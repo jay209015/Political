@@ -53,7 +53,7 @@ Route::get('/contact', function()
 Route::get('/logout', function(){
     Auth::logout();
     return Redirect::to('/')
-        ->with('message', 'You are now logged out');
+        ->with('message', 'You are now logged out')->with('active','');
 });
 
 Route::get('/lookupvoter', function()
@@ -63,5 +63,6 @@ Route::get('/lookupvoter', function()
 
 Route::post('/lookupvoter', function()
 {
-    //return View::make('lookupvoter');
+    $voter = Voter::where('voter_id_num', '=', Input::get('voter_id_num'))->firstOrFail();
+    return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', '');
 });

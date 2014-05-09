@@ -196,7 +196,7 @@ class Voter extends Eloquent {
      * Inverse of One-to-Many relationship
 	 * An arbitrary amount of voters may belong to one district/precinct.
 	 */
-	public function precinct() {
+	/*public function precinct() {
 		return $this->belongsTo('Precinct');
-	}
+	}*/
 }

@@ -32,7 +32,8 @@ Route::get('/login', function()
 
 Route::post('/login', function(){
     if(Auth::attempt(Input::only('email', 'password'))) {
-        return Redirect::intended('/');
+        return Redirect::intended('/')
+            ->with('message', 'You have successfully logged in.');
     } else {
         return Redirect::back()
             ->withInput()
@@ -64,5 +65,6 @@ Route::get('/lookupvoter', function()
 Route::post('/lookupvoter', function()
 {
     $voter = Voter::where('voter_id_num', '=', Input::get('voter_id_num'))->firstOrFail();
-    return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', '');
+    $total = DB::table('voters')->count();
+    return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', '')->with('total', $total);
 });

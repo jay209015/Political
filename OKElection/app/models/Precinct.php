@@ -7,12 +7,11 @@
  */
 class Precinct extends Eloquent {
 
-	protected $fillable = [];
-	
-	/**
-	 * A precinct/district may have an arbitrary amount of voters.
-	 */
-	public function precinct() {
+    /**
+     * One-to-Many relationship
+     * A district/precinct may have an arbitrary amount of voters.
+     */
+	public function voter() {
 		return $this->hasMany('Voter');
 	}
 }

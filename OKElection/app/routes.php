@@ -41,6 +41,16 @@ Route::post('/login', function(){
     return 'Coming Soon';
 });
 
+Route::get('/about', function()
+{
+    return View::make('about')->with('active', 'about');
+});
+
+Route::get('/contact', function()
+{
+    return View::make('contact')->with('active', 'contact');
+});
+
 Route::get('/logout', function(){
     Auth::logout();
     return Redirect::to('/')

@@ -4,7 +4,7 @@
 @stop
 
 @section('header')
-<h1>About Political Report</h1>
+<h1>Contact Us</h1>
 @stop
 
 @section('content')

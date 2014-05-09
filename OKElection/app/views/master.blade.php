@@ -36,13 +36,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Political Report</a>
+          <a class="navbar-brand" href="{{url('/', $parameters = array(), $secure = null);}}">Political Report</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{{url('/', $parameters = array(), $secure = null);}}">Home</a></li>
-			<li><a href="{{url('register', $parameters = array(), $secure = null);}}">Register</a></li>
-            <li><a href="{{url('login', $parameters = array(), $secure = null);}}">Login</a></li>
+            <!-- <li class="active"><a href="{{url('/', $parameters = array(), $secure = null);}}">Home</a></li> -->
+            @if(Auth::check())
+            @else
+			<li {{$active == "register"? 'class="active"':''}}><a href="{{url('register', $parameters = array(), $secure = null);}}">Register</a></li>
+            <li {{$active == "login"? 'class="active"':''}}><a href="{{url('login', $parameters = array(), $secure = null);}}">Login</a></li>
+            @endif
+            @if(Auth::check())
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -55,9 +59,15 @@
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
-			<li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#logout">Logout</a></li>
+            @endif
+			<li {{$active == "about"? 'class="active"':''}}><a href="{{url('about', $parameters = array(), $secure = null);}}">About</a></li>
+            <li {{$active == "contact"? 'class="active"':''}}><a href={{url('contact', $parameters = array(), $secure = null);}}>Contact</a></li>
+            @if(Auth::check())
+            <li><strong>Logged in as: {{Auth::user()->username}}</strong></li>
+            @endif
+            @if(Auth::check())
+            <li><a href="{{url('logout', $parameters = array(), $secure = null);}}">Logout</a></li>
+            @endif
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -68,6 +78,16 @@
       <div class="page-header">
         @yield('header')
       </div>
+      @if(Session::has('message'))
+      <div class="alert alert-success">
+          {{Session::get('message')}}
+      </div>
+      @endif
+      @if(Session::has('error'))
+      <div class="alert alert-warning">
+          {{Session::get('error')}}
+      </div>
+      @endif
       @yield('content')
     </div>
 

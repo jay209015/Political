@@ -13,15 +13,36 @@
 
 Route::get('/', function()
 {
-	return View::make('index');
+	return View::make('index')->with('active', 'index');
 });
 
 Route::get('/register', function()
 {
-    return View::make('register');
+    return View::make('register')->with('active', 'register');
+});
+
+Route::post('/register', function(){
+    return 'Coming Soon';
 });
 
 Route::get('/login', function()
 {
-    return View::make('login');
+    return View::make('login')->with('active', 'login');
+});
+
+Route::post('/login', function(){
+    /*if(Auth::attempt(Input::only('email', 'password'))) {
+        return Redirect::intended('/');
+    } else {
+        return Redirect::back()
+            ->withInput()
+            ->with('error', "Invalid credentials");
+    }*/
+    return 'Coming Soon';
+});
+
+Route::get('/logout', function(){
+    Auth::logout();
+    return Redirect::to('/')
+        ->with('message', 'You are now logged out');
 });

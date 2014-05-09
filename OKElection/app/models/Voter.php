@@ -8,7 +8,7 @@
 class Voter extends Eloquent {
 
     /**
-     * We don't need timestamps in our table.
+     * We don't need timestamps in our table for the voter dataset.
      *
      * @var string
      */

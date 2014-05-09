@@ -9,10 +9,8 @@ class Voter extends Eloquent {
 
     /**
      * We don't need timestamps in our table for the voter dataset.
-     *
-     * @var string
      */
-    protected $timestamps = 'false';
+    public $timestamps = 'false';
 
     /**
      * Retrieve the voter's first name

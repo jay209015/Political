@@ -50,8 +50,8 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Get number of Voters</a></li>
-                <li><a href="#">Another action</a></li>
+                <li><a href="{{url('lookupvoter', $parameters = array(), $secure = null);}}">Get information by Voter ID</a></li>
+                <li><a href="#">Generate Full Report</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
@@ -63,10 +63,10 @@
 			<li {{$active == "about"? 'class="active"':''}}><a href="{{url('about', $parameters = array(), $secure = null);}}">About</a></li>
             <li {{$active == "contact"? 'class="active"':''}}><a href={{url('contact', $parameters = array(), $secure = null);}}>Contact</a></li>
             @if(Auth::check())
-            <li><strong>Logged in as: {{Auth::user()->username}}</strong></li>
+            <li><a href="{{url('logout', $parameters = array(), $secure = null);}}">Logout</a></li>
             @endif
             @if(Auth::check())
-            <li><a href="{{url('logout', $parameters = array(), $secure = null);}}">Logout</a></li>
+            <li><a href="#">Logged in as: {{Auth::user()->email}}</a></li>
             @endif
           </ul>
         </div><!--/.nav-collapse -->

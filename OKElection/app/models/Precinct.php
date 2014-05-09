@@ -8,6 +8,11 @@
 class Precinct extends Eloquent {
 
     /**
+     * We don't need timestamps in our table for the precinct dataset.
+     */
+    public $timestamps = 'false';
+
+    /**
      * Retrieve the Congressional District
      *
      * @return integer

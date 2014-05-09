@@ -31,14 +31,13 @@ Route::get('/login', function()
 });
 
 Route::post('/login', function(){
-    /*if(Auth::attempt(Input::only('email', 'password'))) {
+    if(Auth::attempt(Input::only('email', 'password'))) {
         return Redirect::intended('/');
     } else {
         return Redirect::back()
             ->withInput()
             ->with('error', "Invalid credentials");
-    }*/
-    return 'Coming Soon';
+    }
 });
 
 Route::get('/about', function()
@@ -55,4 +54,14 @@ Route::get('/logout', function(){
     Auth::logout();
     return Redirect::to('/')
         ->with('message', 'You are now logged out');
+});
+
+Route::get('/lookupvoter', function()
+{
+    return View::make('lookupvoter')->with('active', '');
+});
+
+Route::post('/lookupvoter', function()
+{
+    //return View::make('lookupvoter');
 });

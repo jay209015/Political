@@ -15,3 +15,13 @@ Route::get('/', function()
 {
 	return View::make('index');
 });
+
+Route::get('/register', function()
+{
+    return View::make('register');
+});
+
+Route::get('/login', function()
+{
+    return View::make('login');
+});

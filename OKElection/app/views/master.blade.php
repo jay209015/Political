@@ -21,6 +21,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    @yield('assets')
   </head>
 
   <body>
@@ -39,9 +40,9 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-			<li><a href="#register">Register</a></li>
-            <li><a href="#contact">Login</a></li>
+            <li class="active"><a href="{{url('/', $parameters = array(), $secure = null);}}">Home</a></li>
+			<li><a href="{{url('register', $parameters = array(), $secure = null);}}">Register</a></li>
+            <li><a href="{{url('login', $parameters = array(), $secure = null);}}">Login</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b></a>
               <ul class="dropdown-menu">

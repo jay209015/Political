@@ -1,5 +1,9 @@
+<?php
+
 /**
  * Represents precinct/district information.
+ *
+ * @author   Andre Patterson <apatterson@printplace.com>
  */
 class Precinct extends Eloquent {
 	protected $fillable = [];

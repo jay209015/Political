@@ -1,5 +1,9 @@
+<?php
+
 /**
  * Represents an Oklahoman voter's registration information as well as how they voted.
+ *
+ * @author   Andre Patterson <apatterson@printplace.com>
  */
 class Voter extends Eloquent {
 

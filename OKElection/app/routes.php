@@ -13,7 +13,12 @@
 
 Route::get('/', function()
 {
-	return View::make('index')->with('active', 'index');
+    if(Auth::check()){
+        return View::make('index')->with('active', 'index');
+    } else {
+        return Redirect::to('login');
+    }
+
 });
 
 Route::get('/register', function()

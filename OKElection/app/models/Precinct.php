@@ -62,6 +62,6 @@ class Precinct extends Eloquent {
      * A district/precinct may have an arbitrary amount of voters.
      */
 	public function voter() {
-		return $this->hasMany('Voter', 'precinct_num', 'precinct_num');
+		return $this->hasMany('Voter', 'precinct_number', 'precinct_number');
 	}
 }

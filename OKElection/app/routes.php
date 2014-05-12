@@ -59,12 +59,12 @@ Route::get('/logout', function(){
 
 Route::get('/lookupvoter', function()
 {
-    return View::make('lookupvoter')->with('active', '');
+    return View::make('lookupvoter')->with('active', 'lookupvoter');
 });
 
 Route::post('/lookupvoter', function()
 {
     $voter = Voter::where('voter_id_num', '=', Input::get('voter_id_num'))->firstOrFail();
     $total = DB::table('voters')->count();
-    return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', '')->with('total', $total);
+    return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', 'lookupvoter')->with('total', $total);
 });

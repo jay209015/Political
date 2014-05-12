@@ -50,7 +50,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="{{url('lookupvoter', $parameters = array(), $secure = null);}}">Get information by Voter ID</a></li>
+                <li {{$active == "lookupvoter"? 'class="active"':''}}><a href="{{url('lookupvoter', $parameters = array(), $secure = null);}}">Get information by Voter ID</a></li>
                 <li><a href="#">Generate Full Report</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>

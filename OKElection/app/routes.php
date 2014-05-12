@@ -70,6 +70,6 @@ Route::get('/lookupvoter', function()
 Route::post('/lookupvoter', function()
 {
     $voter = Voter::where('voter_id_num', '=', Input::get('voter_id_num'))->firstOrFail();
-    $total = DB::table('voters')->count();
-    return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', 'lookupvoter')->with('total', $total);
+    //$total = DB::table('voters')->count();
+    return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', 'lookupvoter');
 });

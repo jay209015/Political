@@ -11,6 +11,7 @@
 |
 */
 
+Route::group(array('before' => 'authfacade'), function() {
 Route::get('/', function()
 {
     if(Auth::check()){
@@ -72,4 +73,21 @@ Route::post('/lookupvoter', function()
     $voter = Voter::where('voter_id_num', '=', Input::get('voter_id_num'))->firstOrFail();
     //$total = DB::table('voters')->count();
     return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', 'lookupvoter');
+});
+});
+
+Route::get('/loginfacade', function()
+{
+    return View::make('loginfacade');
+});
+
+Route::post('/loginfacade', function(){
+    if(Auth::attempt(Input::only('email', 'password'))) {
+        return Redirect::intended('/')
+            ->with('message', 'You have successfully logged in.');
+    } else {
+        return Redirect::back()
+            ->withInput()
+            ->with('error', "Invalid credentials");
+    }
 });

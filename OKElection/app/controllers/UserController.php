@@ -5,22 +5,43 @@
  */
 class UserController extends BaseController {
 
+    /**
+     * Close off every page to guests except for the login page.
+     */
     public function __construct() {
         $this->beforeFilter('authfacade', array('except' => ['getLoginFacade', 'postLoginFacade']));
     }
 
+    /**
+     * Form for User registration.
+     * @return mixed
+     */
     public function getRegister() {
         return View::make('register')->with('active', 'register');
     }
 
+    /**
+     * Validate then process User registration.
+     * @return string
+     */
     public function postRegister() {
         return 'Coming Soon';
     }
 
+    /**
+     * At the current time, Political report is closed for registration.
+     * A temporary login is overlayed on top of the application to close
+     * off registration.
+     * @return mixed
+     */
     public function getLoginFacade() {
         return View::make('loginfacade');
     }
 
+    /**
+     * Validate and process the temporary employee-only login.
+     * @return mixed
+     */
     public function postLoginFacade() {
         if(Auth::attempt(Input::only('email', 'password'))) {
             return Redirect::to('/')
@@ -32,10 +53,18 @@ class UserController extends BaseController {
         }
     }
 
+    /**
+     * The login form.
+     * @return mixed
+     */
     public function getLogin() {
         return View::make('login')->with('active', 'login');
     }
 
+    /**
+     * Validate and process the login form.
+     * @return mixed
+     */
     public function postLogin() {
         if(Auth::attempt(Input::only('email', 'password'))) {
             return Redirect::intended('/')
@@ -47,6 +76,10 @@ class UserController extends BaseController {
         }
     }
 
+    /**
+     * End the user's session and redirect them to the index.
+     * @return mixed
+     */
     public function getLogout() {
         Auth::logout();
         return Redirect::to('/')

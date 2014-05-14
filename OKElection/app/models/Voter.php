@@ -197,6 +197,14 @@ class Voter extends Eloquent {
 	 * An arbitrary amount of voters may belong to one district/precinct.
 	 */
 	public function precinct() {
-		return $this->belongsTo('Precinct');
+		return $this->belongsTo('Precinct', 'precinct_number', 'precinct_number');
 	}
+
+    /**
+     * One to Many relationship
+     * One voter may have an arbitrary amount of vote history i.e. voted in multiple elections.
+     */
+    public function history() {
+        return $this->hasMany('History', 'voter_id_num', 'voter_id_num');
+    }
 }

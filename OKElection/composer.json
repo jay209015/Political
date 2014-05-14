@@ -29,6 +29,9 @@
 			"php artisan key:generate"
 		]
 	},
+	"require-dev": {
+		"mockery/mockery": "dev-master"
+	},
 	"config": {
 		"preferred-install": "dist"
 	},

@@ -38,6 +38,11 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::guest('login');
 });
 
+Route::filter('authfacade', function()
+{
+    if(Auth::guest()) return Redirect::guest('loginfacade');
+});
+
 
 Route::filter('auth.basic', function()
 {

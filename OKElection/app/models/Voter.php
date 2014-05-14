@@ -204,7 +204,7 @@ class Voter extends Eloquent {
      * One to Many relationship
      * One voter may have an arbitrary amount of vote history i.e. voted in multiple elections.
      */
-    public function history() {
+    public function histories() {
         return $this->hasMany('History', 'voter_id_num', 'voter_id_num');
     }
 }

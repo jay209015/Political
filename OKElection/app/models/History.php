@@ -3,7 +3,7 @@
 /**
  * Class History represents a voter's history i.e. all the elections that they've voted in.
  */
-class History {
+class History extends Eloquent {
 
     /**
      * Inverse of One-to-Many relationship

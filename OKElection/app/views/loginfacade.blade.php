@@ -57,11 +57,8 @@
 				</span>
                     <hr>
                     <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
                             <input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In">
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <a href="{{url('register', $parameters = array(), $secure = null);}}" class="btn btn-lg btn-primary btn-block">Register</a>
                         </div>
                     </div>
                 </fieldset>

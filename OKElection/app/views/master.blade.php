@@ -43,14 +43,14 @@
             <!-- <li class="active"><a href="{{url('/', $parameters = array(), $secure = null);}}">Home</a></li> -->
             @if(Auth::check())
             @else
-			<li {{$active == "register"? 'class="active"':''}}><a href="{{url('register', $parameters = array(), $secure = null);}}">Register</a></li>
-            <li {{$active == "login"? 'class="active"':''}}><a href="{{url('login', $parameters = array(), $secure = null);}}">Login</a></li>
+			<li {{$active == "register"? 'class="active"':''}}><a href="{{url('users/register', $parameters = array(), $secure = null);}}">Register</a></li>
+            <li {{$active == "login"? 'class="active"':''}}><a href="{{url('users/login', $parameters = array(), $secure = null);}}">Login</a></li>
             @endif
             @if(Auth::check())
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li {{$active == "lookupvoter"? 'class="active"':''}}><a href="{{url('lookupvoter', $parameters = array(), $secure = null);}}">Get information by Voter ID</a></li>
+                <li {{$active == "lookupvoter"? 'class="active"':''}}><a href="{{url('reports/lookup-voter', $parameters = array(), $secure = null);}}">Get information by Voter ID</a></li>
                 <li><a href="#">Generate Full Report</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>
@@ -63,7 +63,7 @@
 			<li {{$active == "about"? 'class="active"':''}}><a href="{{url('about', $parameters = array(), $secure = null);}}">About</a></li>
             <li {{$active == "contact"? 'class="active"':''}}><a href={{url('contact', $parameters = array(), $secure = null);}}>Contact</a></li>
             @if(Auth::check())
-            <li><a href="{{url('logout', $parameters = array(), $secure = null);}}">Logout</a></li>
+            <li><a href="{{url('users/logout', $parameters = array(), $secure = null);}}">Logout</a></li>
             @endif
             @if(Auth::check())
             <li><a href="#">Logged in as: {{Auth::user()->email}}</a></li>

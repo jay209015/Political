@@ -24,44 +24,47 @@ class ReportController extends BaseController {
     }
 
     public function getQuery(){
-        return View::make('report/query')->with('voter', [] )->with('active','queryvoter');
+        $form = [];
+        $form['county_code'] = '';
+        $form['election_dates'] = '';
+        $form['appears'] = '';
+
+        return View::make('report/query')->with('voter', [] )->with('active','queryvoter')->with('form', $form);
     }
 
     public function postQuery(){
-        /*
-         * SELECT
-	COUNT(DISTINCT voters.voter_id_num)
-FROM
-	voters
-RIGHT JOIN histories ON histories.voter_id_num = voters.voter_id_num
-WHERE
-	precinct_number LIKE "17%"
-AND
-	histories.election_date IN (
-		'20140401',
-		'20140211',
-		'20131112',
-		'20130402'
-	)
-         */
 
         $county = Input::get('county_code');
-        $dates = Input::get('election_dates');
+        $dates = explode(',', Input::get('election_dates'));
         $appears = Input::get('appears');
-        $voters = array();
 
-        $query = Voter::where('precinct_number', 'like', $county."%");
+        $form = [];
+        $form['county_code'] = Input::get('county_code');
+        $form['election_dates'] = Input::get('election_dates');
+        $form['appears'] = Input::get('appears');
+
+        $query = Voter::select(array('voters.voter_id_num', DB::raw('COUNT(*) as `count`')));;
+
+        if($county){
+            $query->where('county', '=', $county);
+        }
 
         if($dates){
-            $query->whereHas('histories', function($q) use($dates){
-                $q->wherein('election_date', explode(',', $dates));
-            });
+            $query->join('histories', 'histories.voter_id_num', '=', 'voters.voter_id_num');
+            $query->wherein('election_date', $dates);
         }
+
+        if($appears){
+            $count = min($appears, count($dates));
+            $query->having('count', '=', $count);
+        }
+
+        $query->groupBy('voters.voter_id_num');
 
 
         $voters = $query->get();
 
 
-        return View::make('report/query')->with('voters', $voters )->with('active','queryvoter');
+        return View::make('report/query')->with('voters', $voters )->with('active','queryvoter')->with('form', $form);
     }
 }

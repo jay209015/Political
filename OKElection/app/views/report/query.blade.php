@@ -20,11 +20,11 @@
         <input type="text" class="form-control" id="county_code" name="county_code" size="2" placeholder="17" value="<?=$form['county_code']?>"/>
     </div>
     <div class="form-group">
-        <label  for="election_dates">Dates</label>
+        <label  for="election_dates">Dates (comma separated)</label>
         <input type="text" name="election_dates" id="election_dates" placeholder="<?=date('Ymd')?>" value="<?=$form['election_dates']?>"/>
     </div>
     <div class="form-group">
-        <label  for="county_code">Appears in (n) of Dates (not yet functioning)</label>
+        <label  for="county_code">Appears in (n) of Dates</label>
         <input type="text" name="appears" placeholder="3" value="<?=$form['appears']?>"/>
     </div>
     <div class="form-group">

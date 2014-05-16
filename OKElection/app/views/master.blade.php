@@ -93,6 +93,15 @@
 
     <div id="footer">
       <div class="container">
+          <?php
+          $queries = DB::getQueryLog();
+          $total_queries = count($queries);
+          $total_time = 0;
+          foreach($queries as $query){
+              $total_time += $query['time'];
+          }
+          ?>
+        <p style="float:right" class="text-muted"><?=$total_queries?> quer<?=($total_queries == 0 || $total_queries > 1)? 'ies': 'y'?> generated in <?=number_format($total_time/100, 2)?> second<?=($total_time == 0 || $total_time > 1)? 's': ''?></p>
         <p class="text-muted">&copy;2014 PrintPlace.com, LLC, ALL RIGHTS RESERVED</p>
       </div>
     </div>

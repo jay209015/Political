@@ -89,13 +89,15 @@ class ReportController extends BaseController {
 
         $voters = $query->get();
 
+
         /*
         $queries = DB::getQueryLog();
         $last_query = end($queries);
 
-        print_r($last_query);
+        print_r($queries);
         exit();
         */
+
 
         return View::make('report/query')->with('voters', $voters )->with('active','queryvoter')->with('form', $form);
     }

@@ -38,6 +38,8 @@ class ReportController extends BaseController {
         $form['affiliation']['options']['DEM'] = 'Democratic';
         $form['affiliation']['options']['REP'] = 'Republican';
         $form['affiliation']['options']['IND'] = 'Independent';
+        $form['counties'] = ['options' => County::all()->toArray(), 'selected' => ''];
+
 
         return View::make('report/query')->with('voter', [] )->with('active','queryvoter')->with('form', $form);
     }
@@ -63,6 +65,7 @@ class ReportController extends BaseController {
         $form['affiliation']['options']['DEM'] = 'Democratic';
         $form['affiliation']['options']['REP'] = 'Republican';
         $form['affiliation']['options']['IND'] = 'Independent';
+        $form['counties'] = ['options' => County::all()->toArray(), 'selected' => Input::get('county_code')];
 
         $query = Voter::select(array('voters.voter_id_num', DB::raw('COUNT(*) as `count`')));;
         $query->join('histories', 'histories.voter_id_num', '=', 'voters.voter_id_num');

@@ -14,8 +14,12 @@ $count = (isset($voters))? $voters->count(): 0;
         <div class="well">
             <form action="" method="POST" class="form" role="form">
                 <div class="form-group">
-                    <label  for="county_code">County Code</label>
-                    <input type="text" id="county_code" name="county_code" size="2" placeholder="17" value="<?=$form['county_code']?>"/>
+                    <label  for="county_code">County</label>
+                    <select name="county_code" id="county_code">
+                        <?php foreach($form['counties']['options'] as $option): ?>
+                            <option value="<?=$option['id']?>" <?=(($option['id'] == $form['counties']['selected'])? 'SELECTED': '')?>><?=$option['name']?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label  for="election_dates">Dates (comma separated)</label>

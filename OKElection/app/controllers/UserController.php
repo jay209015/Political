@@ -43,7 +43,9 @@ class UserController extends BaseController {
      * @return mixed
      */
     public function postLoginFacade() {
-        if(Auth::attempt(Input::only('email', 'password'))) {
+        $remember_me = Input::get('remember_me');
+
+        if(Auth::attempt(Input::only('email', 'password'), $remember_me)) {
             return Redirect::to('/')
                 ->with('message', 'You have successfully logged in.');
         } else {
@@ -66,7 +68,8 @@ class UserController extends BaseController {
      * @return mixed
      */
     public function postLogin() {
-        if(Auth::attempt(Input::only('email', 'password'))) {
+        $remember_me = Input::get('remember_me');
+        if(Auth::attempt(Input::only('email', 'password'), $remember_me)) {
             return Redirect::intended('/')
                 ->with('message', 'You have successfully logged in.');
         } else {

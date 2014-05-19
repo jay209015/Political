@@ -51,7 +51,7 @@
                         <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
                     </div>
 				<span class="button-checkbox">
-					<button type="button" class="btn" data-color="info">Remember Me</button>
+					<button type="button" class="btn btn-info active" data-color="info"><i class="state-icon glyphicon glyphicon-check"></i>&nbsp;Remember Me</button>
                     <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
 					<a href="" class="btn btn-link pull-right">Forgot Password?</a>
 				</span>

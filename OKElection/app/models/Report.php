@@ -12,7 +12,11 @@ class Report {
     }
 
     public function getVoterTotal() {
+        $total = DB::table('voters')
+            ->count();
+        return $total;
     }
+
 
     public static function getVoterByID($id) {
         $voter = Voter::where('voter_id_num', '=', $id)->firstOrFail();
@@ -33,6 +37,7 @@ class Report {
     }
 
     /**
+     *
      * @param $county
      * @param $affiliation
      * @param $appears

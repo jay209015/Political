@@ -32,8 +32,47 @@ class Report {
         return $num_votes;
     }
 
-    public static function getGeneralQuery() {
+    /**
+     * @param $county
+     * @param $affiliation
+     * @param $appears
+     * @param $dates
+     */
+    public static function getGeneralQuery($county, $affiliation, $appears, $dates) {
+        $query = Voter::select(array('voters.voter_id_num', DB::raw('COUNT(*) as `count`')));;
+        $query->join('histories', 'histories.voter_id_num', '=', 'voters.voter_id_num');
 
+        if($county){
+            $query->where('county', '=', $county);
+        }
+
+        if($affiliation){
+            $query->where('political_affiliation', '=', $affiliation);
+        }
+
+        if(isset($dates) && is_array($dates) && $dates[0]){
+            $query->wherein('election_date', $dates);
+        }
+
+        if($appears){
+            $count = min($appears, count($dates));
+            $query->having('count', '=', $count);
+        }
+
+        $query->groupBy('voters.voter_id_num');
+
+
+        $voters = $query->get();
+
+        return $voters;
+
+        /*
+        $queries = DB::getQueryLog();
+        $last_query = end($queries);
+
+        print_r($queries);
+        exit();
+        */
     }
 
 }

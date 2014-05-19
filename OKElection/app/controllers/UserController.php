@@ -90,7 +90,8 @@ class UserController extends BaseController {
     }
 
     public function getProfile() {
-        return View::make('profile')->with('active', '');
+
+        return View::make('profile')->with('active', 'profile');
     }
 
     public function postProfile() {

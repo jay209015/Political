@@ -20,6 +20,6 @@
     <li>City: {{$voter->getCity()}}</li>
     <li>Zip Code: {{$voter->getZipCode()}}</li>
     <li>Street Direction: {{$voter->getLastName()}}</li>
-    <li>Number of times voted: </li>
+    <li>Number of times voted: {{$numTimesVoted}}</li>
 </ul>
 @stop

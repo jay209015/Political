@@ -18,9 +18,10 @@ class ReportController extends BaseController {
      * @return mixed
      */
     public function postLookupVoter() {
-        $voter = Voter::where('voter_id_num', '=', Input::get('voter_id_num'))->firstOrFail();
-        //$total = DB::table('voters')->count();
-        return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', 'lookupvoter');
+        $voter_id = Input::get('voter_id_num');
+        $voter = Voter::where('voter_id_num', '=', $voter_id)->firstOrFail();
+        $numTimesVoted = Report::getNumTimesVoterVoted($voter_id);
+        return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', 'lookupvoter')->with('numTimesVoted', $numTimesVoted);
     }
 
 

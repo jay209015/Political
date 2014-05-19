@@ -63,10 +63,10 @@
 			<li {{$active == "about"? 'class="active"':''}}><a href="{{url('about', $parameters = array(), $secure = null);}}">About</a></li>
             <li {{$active == "contact"? 'class="active"':''}}><a href={{url('contact', $parameters = array(), $secure = null);}}>Contact</a></li>
             @if(Auth::check())
-            <li><a href="{{url('users/logout', $parameters = array(), $secure = null);}}">Logout</a></li>
+            <li><a href="{{url('users/logout', $parameters = array(), $secure = null)}}">Logout</a></li>
             @endif
             @if(Auth::check())
-            <li><a href="#">Logged in as: {{Auth::user()->email}}</a></li>
+            <li><a href="{{url('users/profile', $parameters = array(), $secure = null)}}">Logged in as:{{Auth::user()->email}}</a></li>
             @endif
           </ul>
         </div><!--/.nav-collapse -->

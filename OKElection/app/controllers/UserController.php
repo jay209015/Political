@@ -85,7 +85,15 @@ class UserController extends BaseController {
      */
     public function getLogout() {
         Auth::logout();
-        return Redirect::to('/')
+        return Redirect::to('/users/login-facade')
             ->with('message', 'You are now logged out')->with('active','');
+    }
+
+    public function getProfile() {
+
+    }
+
+    public function postProfile() {
+        
     }
 }

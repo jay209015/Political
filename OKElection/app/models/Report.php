@@ -14,8 +14,9 @@ class Report {
     public function getVoterTotal() {
     }
 
-    public function getVoterByID($id) {
-
+    public static function getVoterByID($id) {
+        $voter = Voter::where('voter_id_num', '=', $id)->firstOrFail();
+        return $voter;
     }
 
     /**
@@ -31,5 +32,8 @@ class Report {
         return $num_votes;
     }
 
+    public static function getGeneralQuery() {
+
+    }
 
 }

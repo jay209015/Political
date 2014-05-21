@@ -53,10 +53,11 @@
                 <li {{$active == "lookupvoter"? 'class="active"':''}}><a href="{{url('reports/lookup-voter', $parameters = array(), $secure = null);}}">Get information by Voter ID</a></li>
 <!--                <li><a href="#">Generate Full Report</a></li>-->
                 <li {{$active == "queryvoter"? 'class="active"':''}}><a href="{{url('reports/query', $parameters = array(), $secure = null);}}">Query Voters</a></li>
-                <li class="divider"></li>
+                <li {{$active == "uniquevotersincounties"? 'class="active"':''}}><a href="{{url('reports/unique-voters-per-county', $parameters = array(), $secure = null);}}">List Unique Voters Per County</a></li>
+<!--                <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
                 <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><a href="#">One more separated link</a></li>-->
               </ul>
             </li>
             @endif
@@ -102,8 +103,8 @@
           }
           ?>
         <p style="float:right" class="text-muted">
-            <?=$total_queries?> quer<?=($total_queries == 0 || $total_queries > 1)? 'ies': 'y'?>
-            generated in <?=number_format($total_time/100, 2)?> second<?=($total_time == 0 || $total_time > 1)? 's': ''?>
+            {{$total_queries}} {{Str::plural('query', count($queries))}}
+            generated in {{number_format($total_time/100, 2)}} {{Str::plural('second', count($queries))}}
         </p>
         <p class="text-muted">&copy;2014 PrintPlace.com, LLC, ALL RIGHTS RESERVED</p>
       </div>

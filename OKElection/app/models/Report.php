@@ -11,7 +11,19 @@ class Report {
 
     }
 
-    public function getVoterTotal() {
+    /**
+     * @return The number of unique voters per county.
+     */
+    public static function getNumUniqueVotersPerCounty() {
+        $votes_per_county = Voter::select(array('voters.county', DB::raw('COUNT(*) as `count`'), 'counties.name as county_name'))
+            ->join('counties', 'counties.id', '=', 'voters.county')
+            ->orderBy('counties.name')
+            ->groupBy('voters.county')
+            ->get();
+        return $votes_per_county;
+    }
+
+    public static function getVoterTotal() {
         $total = DB::table('voters')
             ->count();
         return $total;
@@ -44,7 +56,7 @@ class Report {
      * @param $dates
      */
     public static function getGeneralQuery($county, $affiliation, $appears, $dates) {
-        $query = Voter::select(array('voters.voter_id_num', DB::raw('COUNT(*) as `count`')));;
+        $query = Voter::select(array('voters.voter_id_num', DB::raw('COUNT(*) as `count`')));
         $query->join('histories', 'histories.voter_id_num', '=', 'voters.voter_id_num');
 
         if($county){

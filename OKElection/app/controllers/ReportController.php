@@ -24,6 +24,15 @@ class ReportController extends BaseController {
         return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', 'lookupvoter')->with('numTimesVoted', $numTimesVoted);
     }
 
+    public function getUniqueVotersPerCounty() {
+        $uniqueVoters = Report::getNumUniqueVotersPerCounty();
+/*        echo '<ul>';
+            foreach($uniqueVoters as $uniqueVoter) {
+                echo "<li>Count:" . $uniqueVoter->count . "/tCounty ID: " . $uniqueVoter->county_name . "</li>";
+            }
+        echo '</ul>';*/
+        return View::make('uniquevotersincounties')->with('active', 'uniquevotersincounties')->with('uniqueVoters', $uniqueVoters);
+    }
 
     /**
      * Get the form to lookup voter counts

@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('header')
-<h1>Number of Unique Voters per County</h1>
+<h1>Number of Unique Voters per County per Precinct (District)</h1>
 @stop
 
 @section('content')
@@ -15,5 +15,6 @@
             </ul>
         </ul>
     @endforeach
+    {{$uniqueVoters->links()}}
 </ul>
 @stop

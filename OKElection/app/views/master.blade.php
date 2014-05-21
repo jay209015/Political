@@ -53,7 +53,7 @@
                 <li {{$active == "lookupvoter"? 'class="active"':''}}><a href="{{url('reports/lookup-voter', $parameters = array(), $secure = null);}}">List Information by Voter ID</a></li>
 <!--                <li><a href="#">Generate Full Report</a></li>-->
                 <li {{$active == "queryvoter"? 'class="active"':''}}><a href="{{url('reports/query', $parameters = array(), $secure = null);}}">Query Voters</a></li>
-                <li {{$active == "uniquevotersincounties"? 'class="active"':''}}><a href="{{url('reports/unique-voters-per-county', $parameters = array(), $secure = null);}}">List Unique Voters Per County</a></li>
+                <li {{$active == "uniquevotersincounties"? 'class="active"':''}}><a href="{{url('reports/unique-voters-per-county', $parameters = array(), $secure = null);}}">List Unique Voters Per County Per District</a></li>
 <!--                <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
                 <li><a href="#">Separated link</a></li>

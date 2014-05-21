@@ -19,7 +19,7 @@ class Report {
             ->join('counties', 'counties.id', '=', 'voters.county')
             ->orderBy('counties.name')
             ->groupBy('voters.precinct_number')
-            ->get();
+            ->paginate(20);
         return $votes_per_county;
     }
 

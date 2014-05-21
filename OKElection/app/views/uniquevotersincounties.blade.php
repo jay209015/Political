@@ -7,9 +7,12 @@
 @section('content')
 <ul>
     @foreach ($uniqueVoters as $uniqueVoter)
-        <li>{{$uniqueVoter->county_name}}</li>
+        <li>County Name: {{$uniqueVoter->county_name}}</li>
         <ul>
-            <li>{{$uniqueVoter->count}}</li>
+            <li>Precinct Number: {{$uniqueVoter->precinct_number}}</li>
+            <ul>
+                <li>Count: {{$uniqueVoter->count}}</li>
+            </ul>
         </ul>
     @endforeach
 </ul>

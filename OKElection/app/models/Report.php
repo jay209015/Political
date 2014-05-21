@@ -14,9 +14,10 @@ class Report {
     /**
      * @return The number of unique voters per county.
      */
-    public static function getNumUniqueVotersPerCounty() {
+    public static function getNumUniqueVotersPerCounty($county_name) {
         $votes_per_county = Voter::select(array('voters.precinct_number as precinct_number', DB::raw('COUNT(*) as `count`'), 'counties.name as county_name'))
             ->join('counties', 'counties.id', '=', 'voters.county')
+            ->where('counties.name', '=', $county_name)
             ->orderBy('counties.name')
             ->groupBy('voters.precinct_number')
             ->paginate(20);
@@ -91,5 +92,4 @@ class Report {
         exit();
         */
     }
-
 }

@@ -25,13 +25,22 @@ class ReportController extends BaseController {
     }
 
     public function getUniqueVotersPerCounty() {
-        $uniqueVoters = Report::getNumUniqueVotersPerCounty();
-/*        echo '<ul>';
-            foreach($uniqueVoters as $uniqueVoter) {
-                echo "<li>Count:" . $uniqueVoter->count . "/tCounty ID: " . $uniqueVoter->county_name . "</li>";
-            }
-        echo '</ul>';*/
-        return View::make('uniquevotersincounties')->with('active', 'uniquevotersincounties')->with('uniqueVoters', $uniqueVoters);
+        $form['counties'] = ['options' => County::all()->toArray(), 'selected' => ''];
+        return View::make('uniquevotersincounties')->with('active', 'uniquevotersincounties')
+            ->with('form', $form);
+    }
+
+    public function getUniqueVotersPerCountyInfo()
+    {
+        $county_id = Input::get('county_code');
+        $county_name = DB::table('counties')
+            ->select('name')
+            ->where('id', '=', $county_id)
+            ->first();
+        $uniqueVoters = Report::getNumUniqueVotersPerCounty($county_name->name);
+        return View::make('postuniquevotersincounties')->with('active', 'uniquevotersincounties')
+            ->with('county_name', $county_name->name)
+            ->with('uniqueVoters', $uniqueVoters);
     }
 
     /**

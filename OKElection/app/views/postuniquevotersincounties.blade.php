@@ -14,21 +14,25 @@
     @endforeach
     {{$uniqueVoters->appends(Input::only('county_code'))->links()}}
 </ul>-->
-<div class="row">
-    <div class="col-md-2">
-        Precinct Number
-        <br />
-        @foreach ($uniqueVoters as $uniqueVoter)
-            {{$uniqueVoter->precinct_number}} <br />
-        @endforeach
+<div class="row col-md-6">
+    <div class="row bg-primary">
+        <div class="col-md-4">
+            <span>Precinct Number</span>
+        </div>
+        <div class="col-md-2">
+            <span>Count</span>
+        </div>
     </div>
-    <div class="col-md-2">
-        Count
-        <br />
-        @foreach ($uniqueVoters as $uniqueVoter)
-        {{$uniqueVoter->count}} <br />
-        @endforeach
+    @foreach ($uniqueVoters as $uniqueVoter)
+    <div class="row">
+        <div class="col-md-4">
+            <span>{{$uniqueVoter->precinct_number}}</span>
+        </div>
+        <div class="col-md-2">
+            <span>{{$uniqueVoter->count}}</span>
+        </div>
     </div>
+    @endforeach
 </div>
 {{$uniqueVoters->appends(Input::only('county_code'))->links()}}
 @stop

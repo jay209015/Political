@@ -7,32 +7,40 @@
  */
 class Report {
 
-    public function __construct() {
-
+    public function __construct()
+    {
+        //Todo
     }
 
     /**
-     * @return The number of unique voters per county.
+     * @param $county_name The name of the county
+     * @return mixed The number of unique votes per precinct in this particular county.
      */
-    public static function getNumUniqueVotersPerCounty($county_name) {
+    public static function getNumUniqueVotersPerCounty($county_name)
+    {
         $votes_per_county = Voter::select(array('voters.precinct_number as precinct_number', DB::raw('COUNT(*) as `count`'), 'counties.name as county_name'))
             ->join('counties', 'counties.id', '=', 'voters.county')
             ->where('counties.name', '=', $county_name)
             ->orderBy('counties.name')
             ->groupBy('voters.precinct_number')
             ->paginate(20);
+
         return $votes_per_county;
     }
 
-    public static function getVoterTotal() {
+    public static function getVoterTotal()
+    {
         $total = DB::table('voters')
             ->count();
+
         return $total;
     }
 
 
-    public static function getVoterByID($id) {
+    public static function getVoterByID($id)
+    {
         $voter = Voter::where('voter_id_num', '=', $id)->firstOrFail();
+
         return $voter;
     }
 
@@ -41,11 +49,13 @@ class Report {
      * @param $id The ID of the voter whose votes we want to count
      * @return mixed
      */
-    public static function getNumTimesVoterVoted($id) {
+    public static function getNumTimesVoterVoted($id)
+    {
         $num_votes = DB::table('voters')
             ->join('histories', 'voters.voter_id_num', '=', 'histories.voter_id_num')
             ->where('voters.voter_id_num', '=', $id)
             ->count();
+
         return $num_votes;
     }
 
@@ -56,7 +66,8 @@ class Report {
      * @param $appears
      * @param $dates
      */
-    public static function getGeneralQuery($county, $affiliation, $appears, $dates) {
+    public static function getGeneralQuery($county, $affiliation, $appears, $dates)
+    {
         $query = Voter::select(array('voters.voter_id_num', DB::raw('COUNT(*) as `count`')));
         $query->join('histories', 'histories.voter_id_num', '=', 'voters.voter_id_num');
 
@@ -78,7 +89,6 @@ class Report {
         }
 
         $query->groupBy('voters.voter_id_num');
-
 
         $voters = $query->get();
 

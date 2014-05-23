@@ -16,6 +16,10 @@ class IndexController extends BaseController {
         }
     }
 
+    public function getCalendar() {
+        return View::make('calendar')->with('active', 'calendar');
+    }
+
     /**
      * Render the About Us page.
      * @return mixed

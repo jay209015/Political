@@ -11,7 +11,7 @@ class Report {
 
     }
 
-    public function getVoterTotal() {
+    public static function getVoterTotal() {
         $total = DB::table('voters')
             ->count();
         return $total;

@@ -9,7 +9,10 @@
         // page is now ready, initialize the calendar...
 
         jQuery('#calendar').fullCalendar({
-            // put your options and callbacks here
+            events: '/calendar-feed',
+            dayClick: function(calEvent, jsEvent, view) {
+                window.location = '/calendar-details/' + calEvent.start + '/' + calEvent.end;
+            }
         })
 
     });

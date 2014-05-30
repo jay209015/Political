@@ -16,8 +16,33 @@ class IndexController extends BaseController {
         }
     }
 
+    /**
+     * @return mixed render the calender.
+     */
     public function getCalendar() {
         return View::make('calendar')->with('active', 'calendar');
+    }
+
+    /**
+     * @return mixed A JSON encoded feed of all candidates.
+     */
+    public function getCalendarFeed()
+    {
+        //$get_start = Input::get('start');
+        //$get_end = Input::get('end');
+        $candidates = Candidate::all()->take(10);/*where('prim_or_runoff_date', '>=', $get_start)
+        ->where('prim_or_runoff_date', '<=', $get_end);*/
+        $output = [];
+
+        for($i = 0; $i < count($candidates); ++$i) {
+            $output[$i]['title'] = $candidates[$i]->first_name . ' ' . $candidates[$i]->last_name;
+            $output[$i]['start'] = strtotime($candidates[$i]->prim_or_runoff_date);
+            //$output[$i]['end'] = strtotime($candidates[$i]->prim_or_runoff_date);
+        }
+
+        $json = json_encode($output, JSON_UNESCAPED_SLASHES);
+        return $json;
+
     }
 
     /**

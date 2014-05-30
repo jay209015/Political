@@ -21,6 +21,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     @yield('assets')
   </head>
 
@@ -50,16 +51,18 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li {{$active == "lookupvoter"? 'class="active"':''}}><a href="{{url('reports/lookup-voter', $parameters = array(), $secure = null);}}">Get information by Voter ID</a></li>
+                <li {{$active == "lookupvoter"? 'class="active"':''}}><a href="{{url('reports/lookup-voter', $parameters = array(), $secure = null);}}">List Information by Voter ID</a></li>
 <!--                <li><a href="#">Generate Full Report</a></li>-->
                 <li {{$active == "queryvoter"? 'class="active"':''}}><a href="{{url('reports/query', $parameters = array(), $secure = null);}}">Query Voters</a></li>
-                <li class="divider"></li>
+                <li {{$active == "uniquevotersincounties"? 'class="active"':''}}><a href="{{url('reports/unique-voters-per-county', $parameters = array(), $secure = null);}}">List Information by County Name</a></li>
+<!--                <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
                 <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><a href="#">One more separated link</a></li>-->
               </ul>
             </li>
             @endif
+            <li {{$active == "calender"? 'class="active"':''}}><a href="{{url('calendar', $parameters = array(), $secure = null);}}">Calendar</a></li>
 			<li {{$active == "about"? 'class="active"':''}}><a href="{{url('about', $parameters = array(), $secure = null);}}">About</a></li>
             <li {{$active == "contact"? 'class="active"':''}}><a href={{url('contact', $parameters = array(), $secure = null);}}>Contact</a></li>
             @if(Auth::check())
@@ -102,8 +105,8 @@
           }
           ?>
         <p style="float:right" class="text-muted">
-            <?=$total_queries?> quer<?=($total_queries == 0 || $total_queries > 1)? 'ies': 'y'?>
-            generated in <?=number_format($total_time/100, 2)?> second<?=($total_time == 0 || $total_time > 1)? 's': ''?>
+            {{$total_queries}} {{Str::plural('query', count($queries))}}
+            generated in {{number_format($total_time/100, 2)}} {{Str::plural('second', count($queries))}}
         </p>
         <p class="text-muted">&copy;2014 PrintPlace.com, LLC, ALL RIGHTS RESERVED</p>
       </div>
@@ -113,7 +116,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
   </body>
 </html>

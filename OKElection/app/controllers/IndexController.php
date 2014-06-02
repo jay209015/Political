@@ -8,7 +8,8 @@ class IndexController extends BaseController {
     /**
      * Render the homepage if logged in.
      */
-    public function getIndex() {
+    public function getIndex()
+    {
         if(Auth::check()){
             return View::make('index')->with('active', 'index');
         } else {
@@ -19,7 +20,8 @@ class IndexController extends BaseController {
     /**
      * @return mixed render the calender.
      */
-    public function getCalendar() {
+    public function getCalendar()
+    {
         return View::make('calendar')->with('active', 'calendar');
     }
 
@@ -41,7 +43,7 @@ class IndexController extends BaseController {
             //$output[$i]['end'] = strtotime($candidates[$i]->prim_or_runoff_date);
             $set[] = strtotime($candidates[$i]->prim_or_runoff_date);
         }
-        //remove duplicates and reset key values back to 0
+        //remove duplicates then reset key values back to 0
         $set = array_values(array_unique($set));
 
         for($i = 0; $i < count($set); ++$i) {
@@ -54,11 +56,28 @@ class IndexController extends BaseController {
 
     }
 
+    public function getEventFeed()
+    {
+        $start = Input::get('start');
+        $end = Input::get('end');
+
+        $candidates = Candidate::all();
+        $output = [];
+        for ($i = 0; $i < count($candidates); ++$i) {
+            $unix_time = strtotime($candidates[$i]->prim_or_runoff_date);
+            if ($unix_time == $start) {
+                $output[$i] = $candidates[$i]->first_name . ' ' . $candidates[$i]->last_name;
+            }
+        }
+        return '<textarea rows="16" cols="100">'.json_encode(array_values($output)).'</textarea>';
+    }
+
     /**
      * Render the About Us page.
      * @return mixed
      */
-    public function getAbout() {
+    public function getAbout()
+    {
         return View::make('about')->with('active', 'about');
     }
 
@@ -66,7 +85,8 @@ class IndexController extends BaseController {
      * Render the company contact information page.
      * @return mixed
      */
-    public function getContact() {
+    public function getContact()
+    {
         return View::make('contact')->with('active', 'contact');
     }
 }

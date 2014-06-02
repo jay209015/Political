@@ -2,6 +2,8 @@
 
 @section('assets')
 <link rel='stylesheet' type='text/css' href="{{asset('css/fullcalendar.css')}}" />
+<script type='text/javascript' src="{{asset('js/jquery.livequery.js')}}"></script>
+<script type='text/javascript' src="{{asset('js/moment.min.js')}}"></script>
 <script type='text/javascript' src="{{asset('js/fullcalendar.js')}}"></script>
 <!--Include Avgrund modal https://github.com/voronianski/jquery.avgrund.js-->
 <link rel='stylesheet' type='text/css' href="{{asset('css/avgrund.css')}}" />
@@ -11,20 +13,18 @@
         jQuery('#calendar').fullCalendar({
             events: '/calendar-feed',
             eventClick: function(calEvent, jsEvent, view) {
-                $('#calendar').avgrund({
+                $('.fc-event-container').avgrund({
                     width: 640,
                     height: 350,
                     holderClass: 'custom',
                     showClose: true,
                     showCloseText: 'close',
                     onBlurContainer: '.container',
-                    template: 'Candidate information goes here' +
-                        '<div>' +
-                        'Candidate Line 1' +
-                        'Candidate Line 2' +
-                        'Candidate Line 3' +
-                        '</div>'
+                    template: '<div id="template"></div>'
 
+                });
+                $("#template").livequery(function(){
+                    $("#template").load( "event-feed?start=" + moment(calEvent.start).unix());
                 });
             }
         })

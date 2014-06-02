@@ -10,7 +10,7 @@
     jQuery(document).ready(function() {
         jQuery('#calendar').fullCalendar({
             events: '/calendar-feed',
-            dayClick: function(calEvent, jsEvent, view) {
+            eventClick: function(calEvent, jsEvent, view) {
                 $('#calendar').avgrund({
                     width: 640,
                     height: 350,
@@ -24,6 +24,7 @@
                         'Candidate Line 2' +
                         'Candidate Line 3' +
                         '</div>'
+
                 });
             }
         })

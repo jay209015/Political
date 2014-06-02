@@ -30,14 +30,23 @@ class IndexController extends BaseController {
     {
         //$get_start = Input::get('start');
         //$get_end = Input::get('end');
-        $candidates = Candidate::all()->take(10);/*where('prim_or_runoff_date', '>=', $get_start)
+        $candidates = Candidate::all();/*where('prim_or_runoff_date', '>=', $get_start)
         ->where('prim_or_runoff_date', '<=', $get_end);*/
         $output = [];
+        $set    = [];
 
         for($i = 0; $i < count($candidates); ++$i) {
-            $output[$i]['title'] = $candidates[$i]->first_name . ' ' . $candidates[$i]->last_name;
-            $output[$i]['start'] = strtotime($candidates[$i]->prim_or_runoff_date);
+            //$output[$i]['title'] = $candidates[$i]->first_name . ' ' . $candidates[$i]->last_name;
+            //$output[$i]['start'] = strtotime($candidates[$i]->prim_or_runoff_date);
             //$output[$i]['end'] = strtotime($candidates[$i]->prim_or_runoff_date);
+            $set[] = strtotime($candidates[$i]->prim_or_runoff_date);
+        }
+        //remove duplicates and reset key values back to 0
+        $set = array_values(array_unique($set));
+
+        for($i = 0; $i < count($set); ++$i) {
+            $output[$i]['title'] = '#Events';
+            $output[$i]['start'] = $set[$i];
         }
 
         $json = json_encode($output, JSON_UNESCAPED_SLASHES);

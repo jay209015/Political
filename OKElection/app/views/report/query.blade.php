@@ -50,52 +50,8 @@
     </div>
 </div>
 
-<div class="container">
-    <h1>Custom Query Builder</h1>
-    <div class="alert alert-info">
-        <strong>Example Output</strong><br/>
-        <span data-bind="text: text"></span>
-    </div>
-    <div data-bind="with: group">
-        <div data-bind="template: templateName"></div>
-    </div>
-</div>
-
-<!-- HTML Template For Conditions -->
-<script id="condition-template" type="text/html">
-    <div class="condition">
-        <select data-bind="options: fields, value: selectedField"></select>
-        <select data-bind="options: comparisons, value: selectedComparison"></select>
-        <input type="text" data-bind="value: value"></input>
-        <button class="btn btn-danger btn-xs" data-bind="click: $parent.removeChild"><span class="glyphicon glyphicon-minus-sign"></span></button>
-    </div>
-</script>
-
-<!-- HTML Template For Groups -->
-<script id="group-template" type="text/html">
-    <div class="alert alert-warning alert-group">
-        <select data-bind="options: logicalOperators, value: selectedLogicalOperator"></select>
-        <button class="btn btn-xs btn-success" data-bind="click: addCondition"><span class="glyphicon glyphicon-plus-sign"></span> Add Condition</button>
-        <button class="btn btn-xs btn-success" data-bind="click: addGroup"><span class="glyphicon glyphicon-plus-sign"></span> Add Group</button>
-        <button class="btn btn-xs btn-danger" data-bind="click: $parent.removeChild"><span class="glyphicon glyphicon-minus-sign"></span> Remove Group</button>
-        <div class="group-conditions">
-            <div data-bind="foreach: children">
-                <div data-bind="template: templateName"></div>
-            </div>
-        </div>
-    </div>
-</script>
 @stop
 
 @section('assets_footer')
-<!-- js -->
-<script src="{{asset('js/knockout-2.2.1.js')}}"></script>
-<script src="{{asset('js/condition.js')}}"></script>
-<script src="{{asset('js/group.js')}}"></script>
-<script src="{{asset('js/viewModel.js')}}"></script>
-<script>
-    window.addEventListener('load', function(){
-        ko.applyBindings(new QueryBuilder.ViewModel());
-    }, true);
-</script>
+
 @stop

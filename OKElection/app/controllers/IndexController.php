@@ -30,28 +30,33 @@ class IndexController extends BaseController {
      */
     public function getCalendarFeed()
     {
-        //$get_start = Input::get('start');
-        //$get_end = Input::get('end');
-        $candidates = Candidate::all();/*where('prim_or_runoff_date', '>=', $get_start)
-        ->where('prim_or_runoff_date', '<=', $get_end);*/
-        $output = [];
-        $set    = [];
 
-        for($i = 0; $i < count($candidates); ++$i) {
-            //$output[$i]['title'] = $candidates[$i]->first_name . ' ' . $candidates[$i]->last_name;
-            //$output[$i]['start'] = strtotime($candidates[$i]->prim_or_runoff_date);
-            //$output[$i]['end'] = strtotime($candidates[$i]->prim_or_runoff_date);
-            $set[] = strtotime($candidates[$i]->prim_or_runoff_date);
-        }
-        //remove duplicates then reset key values back to 0
-        $set = array_values(array_unique($set));
+        // Pull in the requested dates
+        $get_start = Input::get('start');
+        $get_end = Input::get('end');
 
-        for($i = 0; $i < count($set); ++$i) {
-            $output[$i]['title'] = '#Events';
-            $output[$i]['start'] = $set[$i];
-        }
+        // Convert them to mysql dates
+        $mysql_start = date('Y-m-d', $get_start);
+        $mysql_end = date('Y-m-d', $get_end);
 
-        $json = json_encode($output, JSON_UNESCAPED_SLASHES);
+        // Get all the prim_or_runoff_dates
+        $prim_dates = DB::table('candidates')
+            ->select(DB::raw("'Event(s)' as `title`, UNIX_TIMESTAMP(`prim_or_runoff_date`) as `start`"))
+            ->where('prim_or_runoff_date', '>=', $mysql_start)
+            ->where('prim_or_runoff_date', '<=', $mysql_end);
+
+
+        // Union with the elec_dates
+        $elec_dates = Candidate::select(DB::raw("'Event(s)' as `title`, UNIX_TIMESTAMP(`elec_date`) as `start`"))
+            ->where('elec_date', '>=', $mysql_start)
+            ->where('elec_date', '<=', $mysql_end)
+            ->union($prim_dates)
+            ->get()
+            ->toArray();
+
+
+        // Output JSON
+        $json = json_encode($elec_dates, JSON_UNESCAPED_SLASHES);
         return $json;
 
     }

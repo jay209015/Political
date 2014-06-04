@@ -30,17 +30,11 @@ class IndexController extends BaseController {
      */
     public function getCalendarFeed()
     {
-        //$get_start = Input::get('start');
-        //$get_end = Input::get('end');
-        $candidates = Candidate::all();/*where('prim_or_runoff_date', '>=', $get_start)
-        ->where('prim_or_runoff_date', '<=', $get_end);*/
+        $candidates = Candidate::all();
         $output = [];
         $set    = [];
 
         for($i = 0; $i < count($candidates); ++$i) {
-            //$output[$i]['title'] = $candidates[$i]->first_name . ' ' . $candidates[$i]->last_name;
-            //$output[$i]['start'] = strtotime($candidates[$i]->prim_or_runoff_date);
-            //$output[$i]['end'] = strtotime($candidates[$i]->prim_or_runoff_date);
             $set[] = strtotime($candidates[$i]->prim_or_runoff_date);
         }
         //remove duplicates then reset key values back to 0
@@ -52,14 +46,13 @@ class IndexController extends BaseController {
         }
 
         $json = json_encode($output, JSON_UNESCAPED_SLASHES);
+        
         return $json;
-
     }
 
     public function getEventFeed()
     {
         $start = Input::get('start');
-        $end = Input::get('end');
 
         $candidates = Candidate::all();
         $output = [];
@@ -69,6 +62,7 @@ class IndexController extends BaseController {
                 $output[$i] = $candidates[$i]->first_name . ' ' . $candidates[$i]->last_name;
             }
         }
+
         return '<textarea rows="16" cols="100">'.json_encode(array_values($output)).'</textarea>';
     }
 

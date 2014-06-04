@@ -23,6 +23,7 @@
                     template: '<div id="template"></div>'
 
                 });
+                //wait for dynamically created element to be added to DOM
                 $("#template").livequery(function(){
                     $("#template").load( "event-feed?start=" + moment(calEvent.start).unix());
                 });

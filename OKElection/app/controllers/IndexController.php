@@ -41,19 +41,20 @@ class IndexController extends BaseController {
 
         // Get all the prim_or_runoff_dates
         $prim_dates = DB::table('candidates')
-            ->select(DB::raw("'Event(s)' as `title`, UNIX_TIMESTAMP(`prim_or_runoff_date`) as `start`"))
+            ->select(DB::raw("CONCAT(COUNT(*), ' Event(s)') as `title`, UNIX_TIMESTAMP(`prim_or_runoff_date`) as `start`"))
             ->where('prim_or_runoff_date', '>=', $mysql_start)
-            ->where('prim_or_runoff_date', '<=', $mysql_end);
+            ->where('prim_or_runoff_date', '<=', $mysql_end)
+            ->groupBy('prim_or_runoff_date');
 
 
         // Union with the elec_dates
-        $elec_dates = Candidate::select(DB::raw("'Event(s)' as `title`, UNIX_TIMESTAMP(`elec_date`) as `start`"))
+        $elec_dates = Candidate::select(DB::raw("CONCAT(COUNT(*), ' Event(s)') as `title`, UNIX_TIMESTAMP(`elec_date`) as `start`"))
             ->where('elec_date', '>=', $mysql_start)
             ->where('elec_date', '<=', $mysql_end)
+            ->groupBy('elec_date')
             ->union($prim_dates)
             ->get()
             ->toArray();
-
 
         // Output JSON
         $json = json_encode($elec_dates, JSON_UNESCAPED_SLASHES);
@@ -63,18 +64,20 @@ class IndexController extends BaseController {
 
     public function getEventFeed()
     {
-        $start = Input::get('start');
-        $end = Input::get('end');
 
-        $candidates = Candidate::all();
-        $output = [];
-        for ($i = 0; $i < count($candidates); ++$i) {
-            $unix_time = strtotime($candidates[$i]->prim_or_runoff_date);
-            if ($unix_time == $start) {
-                $output[$i] = $candidates[$i]->first_name . ' ' . $candidates[$i]->last_name;
-            }
-        }
-        return '<textarea rows="16" cols="100">'.json_encode(array_values($output)).'</textarea>';
+        // Pull in the requested dates
+        $get_start = Input::get('start');
+
+        // Convert them to mysql dates
+        $mysql_start = date('Y-m-d', $get_start);
+
+        $candidates = Candidate::select('first_name', 'last_name')
+            ->where('prim_or_runoff_date', '=', $mysql_start)
+            ->orWhere('elec_date', '=', $mysql_start)
+            ->get()
+            ->toArray();
+
+        return '<textarea rows="16" cols="100">'.json_encode(array_values($candidates)).'</textarea>';
     }
 
     /**

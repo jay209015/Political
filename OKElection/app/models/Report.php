@@ -13,7 +13,22 @@ class Report {
     }
 
     /**
-     * @param $county_name The name of the county
+     * Returns the number of people that have the same mailing address as the voter in question.
+     * @param $voter_id
+     * @return int the number of household members corresponding to $voter_id
+     */
+    public static function getNumHouseholdMembers($voter_id)
+    {
+        $voter = Report::getVoterByID($voter_id);
+        $numHouseholds = DB::table('voters')
+            ->where('mailing_street_address_1', '=', $voter->mailing_street_address_1)
+            ->where('zip_code', '=', $voter->zip_code)
+            ->count();
+        return $numHouseholds;
+    }
+
+    /**
+     * @param $county_id The unique county identifier
      * @return mixed The number of unique votes per precinct in this particular county.
      */
     public static function getNumUniqueVotersPerCounty($county_id)
@@ -35,6 +50,9 @@ class Report {
         return $votes_per_county;
     }
 
+    /**
+     * @return mixed the total number of voters in the database
+     */
     public static function getVoterTotal()
     {
         $total = DB::table('voters')
@@ -44,6 +62,10 @@ class Report {
     }
 
 
+    /**
+     * @param $id
+     * @return mixed a voter object
+     */
     public static function getVoterByID($id)
     {
         $voter = Voter::where('voter_id_num', '=', $id)->firstOrFail();

@@ -52,6 +52,7 @@ return array(
 			'prefix'   => '',
 		),
 
+        //oklahoma dataset
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
@@ -62,6 +63,18 @@ return array(
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
+
+        //texas dataset
+        'mysql2' => array(
+            'driver'    => 'mysql',
+            'host'      => 'localhost',
+            'database'  => 'txelection',
+            'username'  => 'root',
+            'password'  => '',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+        ),
 
 		'pgsql' => array(
 			'driver'   => 'pgsql',

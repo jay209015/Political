@@ -11,7 +11,7 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery('#calendar').fullCalendar({
-            events: '/calendar-feed',
+            events: '/calendar/feed',
             eventClick: function(calEvent, jsEvent, view) {
                 $('.fc-event-container').avgrund({
                     width: 640,
@@ -25,7 +25,7 @@
                 });
                 //wait for dynamically created element to be added to DOM
                 $("#template").livequery(function(){
-                    $("#template").load( "event-feed?start=" + moment(calEvent.start).unix());
+                    $("#template").load( "/calendar/event-feed?start=" + moment(calEvent.start).unix());
                 });
             }
         })

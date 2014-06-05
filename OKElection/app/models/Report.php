@@ -18,17 +18,19 @@ class Report {
      */
     public static function getNumUniqueVotersPerCounty($county_id)
     {
-        $votes_per_county = Voter::select(array(
+        $per_page = 20;
+        $page = Input::get('page');
+
+        $votes_per_county = County::select(array(
                 'voters.precinct_number as precinct_number',
                 DB::raw('COUNT(*) as `count`'),
                 'counties.name as county_name'
             ))
-            ->join('counties', 'counties.id', '=', 'voters.county')
-            ->where('counties.id', '=', $county_id)
-            ->orderBy('counties.name')
+            ->join('voters', 'voters.county', '=', 'counties.id')
+            ->where('counties.id', '=', DB::raw($county_id))
+            ->where('voters.county', '=', DB::raw($county_id))
             ->groupBy('voters.precinct_number')
-            ->limit(20)
-            ->paginate(20);
+            ->paginate($per_page);
 
         return $votes_per_county;
     }

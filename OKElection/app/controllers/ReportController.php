@@ -11,7 +11,7 @@ class ReportController extends BaseController {
      */
     public function getLookupVoter()
     {
-        return View::make('lookupvoter')->with('active', 'lookupvoter');
+        return View::make('report/lookupvoter')->with('active', 'lookupvoter');
     }
 
     /**
@@ -24,7 +24,7 @@ class ReportController extends BaseController {
         $voter         = Report::getVoterByID($voter_id);
         $numTimesVoted = Report::getNumTimesVoterVoted($voter_id);
 
-        return View::make('lookupvoterinfo')->with('voter', $voter )->with('active', 'lookupvoter')->with('numTimesVoted', $numTimesVoted);
+        return View::make('report/lookupvoterinfo')->with('voter', $voter )->with('active', 'lookupvoter')->with('numTimesVoted', $numTimesVoted);
     }
 
     /**
@@ -34,7 +34,7 @@ class ReportController extends BaseController {
     {
         $form['counties'] = ['options' => County::all()->toArray(), 'selected' => ''];
 
-        return View::make('uniquevotersincounties')->with('active', 'uniquevotersincounties')
+        return View::make('report/uniquevotersincounties')->with('active', 'uniquevotersincounties')
             ->with('form', $form);
     }
 
@@ -45,9 +45,9 @@ class ReportController extends BaseController {
     {
         $county_id    = Input::get('county_code');
         $county       = County::find($county_id);
-        $uniqueVoters = Report::getNumUniqueVotersPerCounty($county->name);
+        $uniqueVoters = Report::getNumUniqueVotersPerCounty($county_id);
 
-        return View::make('postuniquevotersincounties')->with('active', 'uniquevotersincounties')
+        return View::make('report/postuniquevotersincounties')->with('active', 'uniquevotersincounties')
             ->with('county_name', $county->name)
             ->with('uniqueVoters', $uniqueVoters);
     }

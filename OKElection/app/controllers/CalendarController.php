@@ -1,34 +1,22 @@
 <?php
 
 /**
- * Logic for the root page
+ * Logic for the calendar page
  */
-class IndexController extends BaseController {
-
-    /**
-     * Render the homepage if logged in.
-     */
-    public function getIndex()
-    {
-        if(Auth::check()){
-            return View::make('index')->with('active', 'index');
-        } else {
-            return Redirect::to('users/login-facade');
-        }
-    }
+class CalendarController extends BaseController {
 
     /**
      * @return mixed render the calender.
      */
-    public function getCalendar()
+    public function getIndex()
     {
-        return View::make('calendar')->with('active', 'calendar');
+        return View::make('calendar/index')->with('active', 'calendar');
     }
 
     /**
      * @return mixed A JSON encoded feed of all candidates.
      */
-    public function getCalendarFeed()
+    public function getFeed()
     {
 
         // Pull in the requested dates
@@ -47,6 +35,10 @@ class IndexController extends BaseController {
 
     }
 
+    /**
+     * Get the feed for a given calendar date
+     * @return string
+     */
     public function getEventFeed()
     {
 
@@ -61,23 +53,5 @@ class IndexController extends BaseController {
 
 
         return '<textarea rows="16" cols="100">'.json_encode(array_values($candidates)).'</textarea>';
-    }
-
-    /**
-     * Render the About Us page.
-     * @return mixed
-     */
-    public function getAbout()
-    {
-        return View::make('about')->with('active', 'about');
-    }
-
-    /**
-     * Render the company contact information page.
-     * @return mixed
-     */
-    public function getContact()
-    {
-        return View::make('contact')->with('active', 'contact');
     }
 }

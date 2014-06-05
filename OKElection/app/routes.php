@@ -16,6 +16,7 @@ Route::controller('users', 'UserController');
 Route::group(array('before' => 'authfacade'), function() {
 
     Route::controller('reports', 'ReportController');
+    Route::controller('calendar', 'CalendarController');
 
     Route::controller('/', 'IndexController');
 

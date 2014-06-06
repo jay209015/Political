@@ -23,8 +23,12 @@ class ReportController extends BaseController {
         $voter_id      = Input::get('voter_id_num');
         $voter         = Report::getVoterByID($voter_id);
         $numTimesVoted = Report::getNumTimesVoterVoted($voter_id);
+        $numHouseholdMembers = Report::getNumHouseholdMembers($voter_id);
 
-        return View::make('report/lookupvoterinfo')->with('voter', $voter )->with('active', 'lookupvoter')->with('numTimesVoted', $numTimesVoted);
+        return View::make('report/lookupvoterinfo')->with('voter', $voter )
+            ->with('active', 'lookupvoter')
+            ->with('numTimesVoted', $numTimesVoted)
+            ->with('numHouseholdMembers', $numHouseholdMembers);
     }
 
     /**

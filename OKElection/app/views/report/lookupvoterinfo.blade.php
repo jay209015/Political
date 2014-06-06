@@ -21,5 +21,6 @@
     <li>Zip Code: {{$voter->getZipCode()}}</li>
     <li>Street Direction: {{$voter->getLastName()}}</li>
     <li>Number of times voted: {{$numTimesVoted}}</li>
+    <li>Number of people in household: {{$numHouseholdMembers}}</li>
 </ul>
 @stop

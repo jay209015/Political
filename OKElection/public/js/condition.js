@@ -5,7 +5,7 @@ window.QueryBuilder = (function(exports, ko){
 
     self.templateName = 'condition-template';
 
-    self.fields = ko.observableArray(['Points', 'Goals', 'Assists', 'Shots', 'Shot%', 'PPG', 'SHG', 'Penalty Mins']);
+    self.fields = ko.observableArray(['County', 'Date', 'Political Affiliation', 'Appears in (n) dates']);
     self.selectedField = ko.observable('Points');
     
     self.comparisons = ko.observableArray(['=', '<>', '<', '<=', '>', '>=']);

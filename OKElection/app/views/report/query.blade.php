@@ -1,5 +1,12 @@
 @extends('master')
 
+@section('assets')
+<script src="{{asset('js/RedQueryBuilder/RedQueryBuilder.nocache.js')}}" type="text/javascript">//</script>
+<link rel="stylesheet" href="{{asset('js/RedQueryBuilder/gwt/dark/dark.css')}}" type="text/css" />
+<script src="{{asset('js/RedQueryBuilder/RedQueryBuilderFactory.nocache.js')}}" type="text/javascript">//</script>
+<script src="{{asset('js/simple.js')}}" type="text/javascript">//</script>
+@stop
+
 @section('header')
     <h1>Query Voter Information</h1>
 @stop
@@ -50,6 +57,20 @@
     </div>
 </div>
 
+
+<h1>Custom Query Builder</h1>
+
+
+<noscript>
+    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color:white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+    </div>
+</noscript>
+
+<div id="rqb">&nbsp;</div>
+
+<div><textarea id="debug" cols="80" rows="10">debug output</textarea></div>
 @stop
 
 @section('assets_footer')

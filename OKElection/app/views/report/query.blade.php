@@ -1,10 +1,6 @@
 @extends('master')
 
 @section('assets')
-<script src="{{asset('js/RedQueryBuilder/RedQueryBuilder.nocache.js')}}" type="text/javascript">//</script>
-<link rel="stylesheet" href="{{asset('js/RedQueryBuilder/gwt/dark/dark.css')}}" type="text/css" />
-<script src="{{asset('js/RedQueryBuilder/RedQueryBuilderFactory.nocache.js')}}" type="text/javascript">//</script>
-<script src="{{asset('js/simple.js')}}" type="text/javascript">//</script>
 @stop
 
 @section('header')
@@ -57,20 +53,39 @@
     </div>
 </div>
 
+<div ng-app="QueryBuilder">
+    <div ng-controller="QueryFields">
+        <button class="btn btn-sm btn-success" ng-click="addGroup()">Add Group</button>
+
+        <div class="group well" ng-repeat="(group_id, group) in groups">
+            <button class="btn btn-sm btn-success" ng-click="addRow(group)">Add Condition</button>
+            <button class="btn btn-sm btn-danger" ng-click="removeGroup(group_id)">Remove Group</button>
+            <div class="row" ng-repeat="(row_id, row) in group.rows">
+                <table>
+                    <tr>
+                        <td>
+                            <select ng-model="row.field" ng-options="column.title for column in columns"></select>
+                        </td>
+                        <td>
+                            <select ng-model="row.field.comparison" ng-options="comparison for comparison in comparisons"></select>
+                        </td>
+                        <td>
+                            <select ng-model="groups[group_id].rows[row_id].field.value" ng-if="row.field.type == 'select'" ng-options="option.name for option in row.field.options"></select>
+                            <input ng-model="groups[group_id].rows[row_id].field.value" ng-if="row.field.type == 'text'" type="text" />
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" ng-click="removeRow(group_id, row_id)">Remove</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{asset('js/QueryBuilderController.js')}}"></script>
 
 <h1>Custom Query Builder</h1>
 
-
-<noscript>
-    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color:white; border: 1px solid red; padding: 4px; font-family: sans-serif">
-        Your web browser must have JavaScript enabled
-        in order for this application to display correctly.
-    </div>
-</noscript>
-
-<div id="rqb">&nbsp;</div>
-
-<div><textarea id="debug" cols="80" rows="10">debug output</textarea></div>
 @stop
 
 @section('assets_footer')

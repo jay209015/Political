@@ -68,6 +68,8 @@ class ReportController extends BaseController {
         $form['affiliation']['options']['REP'] = 'Republican';
         $form['affiliation']['options']['IND'] = 'Independent';
         $form['counties'] = ['options' => County::all()->toArray(), 'selected' => ''];
+        $fields = Report::getQueryFields();
+
 
         $count = (isset($voters))? $voters->count(): 0;
         $placeholder_date = date('Ymd');
@@ -76,6 +78,7 @@ class ReportController extends BaseController {
             ->with('voter', [] )
             ->with('active','queryvoter')
             ->with('form', $form)
+            ->with('fields', $fields)
             ->with('count', $count)
             ->with('placeholder_date', $placeholder_date);
     }

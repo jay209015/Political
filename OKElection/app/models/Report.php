@@ -66,6 +66,19 @@ class Report {
         return $num_votes;
     }
 
+    public static function getQueryFields(){
+        $counties = County::all()->toArray();
+        $fields = array();
+        $fields['county'] = new QueryField(
+            'county',
+            $counties,
+            $counties[0],
+            'County'
+        );
+
+        return $fields;
+    }
+
     /**
      *
      * @param $county

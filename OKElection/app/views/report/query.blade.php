@@ -53,6 +53,7 @@
     </div>
 </div>
 
+<h1>Custom Query Builder</h1>
 <div ng-app="QueryBuilder">
     <div ng-controller="QueryFields">
         <button class="btn btn-sm btn-success" ng-click="addGroup()">Add Group</button>
@@ -83,7 +84,6 @@
 </div>
 <script src="{{asset('js/QueryBuilderController.js')}}"></script>
 
-<h1>Custom Query Builder</h1>
 
 @stop
 

@@ -61,6 +61,9 @@
             <button class="btn btn-sm btn-success" ng-click="addRow(group)">Add Condition</button>
             <button class="btn btn-sm btn-danger" ng-click="removeGroup(group_id)">Remove Group</button>
             <div class="row" ng-repeat="(row_id, row) in group.rows">
+                <div class="operator" ng-if="!$first">
+                    <select ng-model="row.field.operator" ng-options="operator for operator in operators"></select>
+                </div>
                 <table>
                     <tr>
                         <td>

@@ -21,8 +21,8 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
                 }
             ],
             'type': 'select',
-            'comparison': $scope.comparisons[0],
-            'operator': $scope.operators[0]
+            'comparison': angular.copy($scope.comparisons[0]),
+            'operator': angular.copy($scope.operators[0])
         },
         {
             'name':'election_date',
@@ -30,26 +30,26 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
             'value': '',
             'type': 'text',
             'options': false,
-            'comparison': $scope.comparisons[0],
-            'operator': $scope.operators[0]
+            'comparison': angular.copy($scope.comparisons[0]),
+            'operator': angular.copy($scope.operators[0])
         }
     ];
 
-    $scope.defaultField = $scope.columns[0];
+
+    $scope.defaultField = angular.copy($scope.columns[0]);
 
     $scope.defaultGroup = {
         rows: [
             {
-                field: $scope.defaultField
+                field: angular.copy($scope.defaultField)
             }
         ]
     };
 
-
-    $scope.groups = [$scope.defaultGroup];
+    $scope.groups = [];
 
     $scope.addRow = function(group){
-        group.rows.push({field: $scope.defaultField});
+        group.rows.push({field: angular.copy($scope.defaultField)});
     };
 
     $scope.removeRow = function(group_id, row_id){
@@ -61,7 +61,7 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
         $scope.groups.push({
             rows: [
                 {
-                    field: $scope.defaultField
+                    field: angular.copy($scope.defaultField)
                 }
             ]
         });
@@ -72,6 +72,9 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
     };
 
     $scope.$watchCollection('groups', function() {
-        console.log('Groups has changed');
     });
+
+    $scope.changeColumn = function(group_id, row_id, column){
+        $scope.groups[group_id].rows[row_id].field = angular.copy(column)
+    }
 });

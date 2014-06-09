@@ -11,13 +11,19 @@ class QueryField {
     public $options;
     public $value;
     public $title;
+    public $type;
+    public $comparison;
+    public $operator;
 
-    public function __construct($name='field', $options=array(), $value='', $title='Field')
+    public function __construct($name='field', $options=array(), $value='', $title='Field', $type='select', $operator='=', $comparison='AND')
     {
         $this->name = $name;
         $this->options = $options;
         $this->value = $value;
         $this->title = $title;
+        $this->type = $type;
+        $this->operator = $operator;
+        $this->comparison = $comparison;
 
         return $this;
     }

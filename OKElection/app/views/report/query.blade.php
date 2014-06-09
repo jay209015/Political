@@ -91,6 +91,9 @@
         </div>
 
 </div>
+<script type="text/javascript">
+    var queryFields = <?=json_encode($fields);?>;
+</script>
 <script src="{{asset('js/QueryBuilderController.js')}}"></script>
 
 

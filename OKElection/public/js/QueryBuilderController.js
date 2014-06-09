@@ -5,35 +5,13 @@ var QueryBuilder = angular.module('QueryBuilder', [], function($interpolateProvi
 
 QueryBuilder.controller('QueryFields', function ($scope, $filter) {
 
+    $scope.queryString = '';
+
     $scope.comparisons = ['=', '!=', '>', '>=', '<', '<='];
 
     $scope.operators = ['AND','OR'];
 
-    $scope.columns = [
-        {
-            'name':'county',
-            'title':'County',
-            'value': false,
-            'options': [
-                {
-                    'id': 1,
-                    'name':'Adair'
-                }
-            ],
-            'type': 'select',
-            'comparison': angular.copy($scope.comparisons[0]),
-            'operator': angular.copy($scope.operators[0])
-        },
-        {
-            'name':'election_date',
-            'title':'Election Date',
-            'value': '',
-            'type': 'text',
-            'options': false,
-            'comparison': angular.copy($scope.comparisons[0]),
-            'operator': angular.copy($scope.operators[0])
-        }
-    ];
+    $scope.columns = queryFields;
 
 
     $scope.defaultField = angular.copy($scope.columns[0]);
@@ -44,7 +22,7 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
                 field: angular.copy($scope.defaultField)
             }
         ],
-        'operator': angular.copy($scope.operators[0])
+        'operator': $scope.operators[0]
     };
 
     $scope.groups = [];
@@ -72,14 +50,42 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
         $scope.groups.splice(group_id,1);
     };
 
-    $scope.$watchCollection('groups', function() {
-    });
-
     $scope.changeColumn = function(group_id, row_id, column){
         $scope.groups[group_id].rows[row_id].field = angular.copy(column)
     }
 
     $scope.postQuery = function(){
-        console.log($scope.groups);
+        $scope.queryString = '';
+
+        angular.forEach($scope.groups, function(group, group_id) {
+
+            if(typeof group.operator != 'undefined' && $scope.operators.indexOf(group.operator) != -1 ){
+                $scope.queryString += ' ' +group.operator+ ' ';
+            }
+            $scope.queryString += '(';
+
+            row_index = 0;
+            angular.forEach(group.rows, function(row, row_id) {
+                if(row_index != 0){
+                    $scope.queryString += ' ' +row.field.operator+ ' ';
+                }
+
+                $scope.queryString += row.field.name +
+                    ' ' +
+                    row.field.comparison + ' ';
+
+                if(typeof row.field.value == 'object'){
+                    $scope.queryString += row.field.value.value;
+                }else{
+                    $scope.queryString += row.field.value;
+                }
+
+                row_index++;
+            });
+
+            $scope.queryString += ')';
+        });
+
+        console.log($scope.queryString);
     }
 });

@@ -90,12 +90,27 @@ class Report {
 
     public static function getQueryFields(){
         $counties = County::all()->toArray();
+
+        $county_fields = array();
+        foreach($counties as $county){
+            $county['value'] = $county['name'];
+            $county_fields[] = $county;
+        }
+
         $fields = array();
-        $fields['county'] = new QueryField(
+        $fields[] = new QueryField(
             'county',
-            $counties,
-            $counties[0],
+            $county_fields,
+            $county_fields[0],
             'County'
+        );
+
+        $fields[] = new QueryField(
+            'election_date',
+            array(),
+            '',
+            'Election Date',
+            'text'
         );
 
         return $fields;

@@ -51,7 +51,12 @@ class CalendarController extends BaseController {
 
         $candidates = Calendar::getElectionCandidates($mysql_date);
 
+        $output = '<textarea rows="16" cols="100">';
+        foreach($candidates as $candidate) {
+            $output .= "First Name: " . $candidate['first_name'] . "; Last Name: " . $candidate['last_name'] . "; Office: " . $candidate['office'] . "; Zipcode: " . $candidate['zip_code'] . "\n";
+        }
+        $output .= '</textarea>';
 
-        return '<textarea rows="16" cols="100">'.json_encode(array_values($candidates)).'</textarea>';
+        return $output;
     }
 }

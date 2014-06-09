@@ -94,6 +94,7 @@
 <script type="text/javascript">
     var queryFields = <?=json_encode($fields);?>;
 </script>
+<script src="{{asset('js/encoding.js')}}"></script>
 <script src="{{asset('js/QueryBuilderController.js')}}"></script>
 
 

@@ -87,5 +87,6 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
         });
 
         console.log($scope.queryString);
+        console.log(Base64.encode($scope.queryString));
     }
 });

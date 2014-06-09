@@ -33,7 +33,7 @@
                 </div>-->
                 <div class="form-group">
                     <label  for="county_code">County</label>
-                    <select name="county_code" id="county_code" ng-model="countyList" ng-options="county.name for county in stateList.counties">
+                    <select name="county_code" id="county_code" ng-model="countyList" ng-options="county.name for county in stateList.counties track by county.id">
                     </select>
                 </div>
                 <hr>

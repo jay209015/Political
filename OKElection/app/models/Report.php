@@ -31,12 +31,12 @@ class Report {
      * @param $county_id The unique county identifier
      * @return mixed The number of unique votes per precinct in this particular county.
      */
-    public static function getNumUniqueVotersPerCounty($county_id)
+    public static function getNumUniqueVotersPerCounty($county_id, $database)
     {
         $per_page = 20;
         $page = Input::get('page');
 
-        $votes_per_county = County::select(array(
+        $votes_per_county = County::on($database)->select(array(
                 'voters.precinct_number as precinct_number',
                 DB::raw('COUNT(*) as `count`'),
                 'counties.name as county_name'

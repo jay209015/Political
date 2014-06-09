@@ -48,8 +48,19 @@ class ReportController extends BaseController {
     public function getUniqueVotersPerCountyInfo()
     {
         $county_id    = Input::get('county_code');
-        $county       = County::find($county_id);
-        $uniqueVoters = Report::getNumUniqueVotersPerCounty($county_id);
+        $state        = Input::get('state');
+        switch($state) {
+            case "0":
+                $state = 'mysql';
+                break;
+            case "1":
+                $state = 'mysql2';
+                break;
+            default:
+                $state = 'mysql';
+        }
+        $county       = County::on($state)->find($county_id);
+        $uniqueVoters = Report::getNumUniqueVotersPerCounty($county_id, $state);
 
         return View::make('report/postuniquevotersincounties')->with('active', 'uniquevotersincounties')
             ->with('county_name', $county->name)

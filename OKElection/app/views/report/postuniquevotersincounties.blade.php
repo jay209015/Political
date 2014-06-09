@@ -24,6 +24,6 @@
         </div>
     </div>
     @endforeach
-    {{$uniqueVoters->appends(Input::only('county_code'))->links()}}
+    {{$uniqueVoters->appends(Input::only('county_code', 'state'))->links()}}
 </div>
 @stop

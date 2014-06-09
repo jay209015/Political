@@ -105,12 +105,19 @@ class Report {
             'County'
         );
 
+
+        $election_dates = Calendar::getElectionDates();
+        $election_date_fields = array();
+        foreach($election_dates as $election_date){
+            $election_date['name'] = date('m/d/Y', strtotime($election_date['start']));
+            $election_date['value'] = $election_date['start'];
+            $election_date_fields[] = $election_date;
+        }
         $fields[] = new QueryField(
             'election_date',
-            array(),
-            '',
-            'Election Date',
-            'text'
+            $election_date_fields,
+            $election_date_fields[0],
+            'Election Date'
         );
 
         return $fields;

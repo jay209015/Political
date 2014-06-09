@@ -18,20 +18,24 @@ class Calendar {
      * @param $mysql_end
      * @return array
      */
-    public static function getElectionDates($mysql_start, $mysql_end){
+    public static function getElectionDates($mysql_start='0000-00-00', $mysql_end=false){
         // Get all the prim_or_runoff_dates
         $prim_dates = DB::table('candidates')
             ->select(DB::raw("CONCAT(COUNT(*), ' Event(s)') as `title`, UNIX_TIMESTAMP(`prim_or_runoff_date`) as `start`"))
-            ->where('prim_or_runoff_date', '>=', $mysql_start)
-            ->where('prim_or_runoff_date', '<=', $mysql_end)
-            ->groupBy('prim_or_runoff_date');
+            ->where('prim_or_runoff_date', '>=', $mysql_start);
+        if($mysql_end){
+            $prim_dates->where('prim_or_runoff_date', '<=', $mysql_end);
+        }
+        $prim_dates->groupBy('prim_or_runoff_date');
 
 
         // Union with the elec_dates
-        $elec_dates = Candidate::select(DB::raw("CONCAT(COUNT(*), ' Event(s)') as `title`, UNIX_TIMESTAMP(`elec_date`) as `start`"))
-            ->where('elec_date', '>=', $mysql_start)
-            ->where('elec_date', '<=', $mysql_end)
-            ->groupBy('elec_date')
+        $elec_query = Candidate::select(DB::raw("CONCAT(COUNT(*), ' Event(s)') as `title`, UNIX_TIMESTAMP(`elec_date`) as `start`"))
+            ->where('elec_date', '>=', $mysql_start);
+        if($mysql_end){
+            $elec_query->where('elec_date', '<=', $mysql_end);
+        }
+        $elec_dates = $elec_query->groupBy('elec_date')
             ->union($prim_dates)
             ->get()
             ->toArray();

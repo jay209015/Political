@@ -71,15 +71,6 @@
             @endif
             @if(Auth::check())
             <li><a href="{{url('users/profile', $parameters = array(), $secure = null)}}">Logged in as:{{Auth::user()->email}}</a></li>
-            <li>
-            <div class="form-group">
-                <label  for="state">Select State</label>
-                <select name="state" id="state">
-                    <option value="Oklahoma" SELECTED>Oklahoma</option>
-                    <option value="Texas" <?=''//(($option['id'] == $form['counties']['selected'])? 'SELECTED': '')?>>Texas</option>
-                </select>
-            </div>
-            </li>
             @endif
           </ul>
         </div><!--/.nav-collapse -->

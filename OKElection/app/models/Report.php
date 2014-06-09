@@ -88,6 +88,10 @@ class Report {
         return $num_votes;
     }
 
+    /**
+     * Get an array of query fields for the query tool
+     * @return array
+     */
     public static function getQueryFields(){
         $counties = County::all()->toArray();
 
@@ -118,6 +122,27 @@ class Report {
             $election_date_fields,
             $election_date_fields[0],
             'Election Date'
+        );
+
+        $affiliation_fields = array(
+            array(
+                'name' => 'Democratic',
+                'value' => 'DEM'
+            ),
+            array(
+                'name' => 'Republican',
+                'value' => 'REP'
+            ),
+            array(
+                'name' => 'Independent',
+                'value' => 'IND'
+            )
+        );
+        $fields[] = new QueryField(
+            'affiliation',
+            $affiliation_fields,
+            $affiliation_fields[0],
+            'Political Affiliation'
         );
 
         return $fields;

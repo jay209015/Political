@@ -55,35 +55,41 @@
 
 <h1>Custom Query Builder</h1>
 <div ng-app="QueryBuilder">
-    <div ng-controller="QueryFields">
-        <button class="btn btn-sm btn-success" ng-click="addGroup()">Add Group</button>
-        <div class="group well" ng-repeat="(group_id, group) in groups">
-            <button class="btn btn-sm btn-success" ng-click="addRow(group)">Add Condition</button>
-            <button class="btn btn-sm btn-danger" ng-click="removeGroup(group_id)">Remove Group</button>
-            <div class="row" ng-repeat="(row_id, row) in group.rows">
-                <div class="operator" ng-if="!$first">
-                    <select ng-model="row.field.operator" ng-options="operator for operator in operators"></select>
+
+        <div ng-controller="QueryFields">
+            <button class="btn btn-sm btn-success" ng-click="addGroup()">Add Group</button>
+            <div class="group well" ng-repeat="(group_id, group) in groups">
+                <div class="operator" ng-if="!$first" style="margin-top:-20px; margin-left: -20px; margin-bottom: 10px">
+                    <select ng-model="group.operator" ng-options="operator for operator in operators"></select>
                 </div>
-                <table>
-                    <tr>
-                        <td>
-                            <select ng-model="updatedColumn" ng-change="changeColumn(group_id, row_id, updatedColumn)" ng-options="column.title for column in columns"></select>
-                        </td>
-                        <td>
-                            <select ng-model="row.field.comparison" ng-options="comparison for comparison in comparisons"></select>
-                        </td>
-                        <td>
-                            <select ng-model="row.field.value" ng-if="row.field.type == 'select'" ng-options="option.name for option in row.field.options"></select>
-                            <input ng-model="row.field.value" ng-if="row.field.type == 'text'" type="text" />
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-danger" ng-click="removeRow(group_id, row_id)">Remove</button>
-                        </td>
-                    </tr>
-                </table>
+                <button class="btn btn-sm btn-success" ng-click="addRow(group)">Add Condition</button>
+                <button class="btn btn-sm btn-danger" ng-click="removeGroup(group_id)">Remove Group</button>
+                <div class="row" ng-repeat="(row_id, row) in group.rows">
+                    <div class="operator" ng-if="!$first">
+                        <select ng-model="row.field.operator" ng-options="operator for operator in operators"></select>
+                    </div>
+                    <table>
+                        <tr>
+                            <td>
+                                <select ng-model="updatedColumn" ng-change="changeColumn(group_id, row_id, updatedColumn)" ng-options="column.title for column in columns"></select>
+                            </td>
+                            <td>
+                                <select ng-model="row.field.comparison" ng-options="comparison for comparison in comparisons"></select>
+                            </td>
+                            <td>
+                                <select ng-model="row.field.value" ng-if="row.field.type == 'select'" ng-options="option.name for option in row.field.options"></select>
+                                <input ng-model="row.field.value" ng-if="row.field.type == 'text'" type="text" />
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-danger" ng-click="removeRow(group_id, row_id)">Remove</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+            <button class="btn btn-success" ng-click="postQuery()">Search</button>
         </div>
-    </div>
+
 </div>
 <script src="{{asset('js/QueryBuilderController.js')}}"></script>
 

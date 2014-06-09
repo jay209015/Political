@@ -43,7 +43,8 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
             {
                 field: angular.copy($scope.defaultField)
             }
-        ]
+        ],
+        'operator': angular.copy($scope.operators[0])
     };
 
     $scope.groups = [];
@@ -76,5 +77,9 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
 
     $scope.changeColumn = function(group_id, row_id, column){
         $scope.groups[group_id].rows[row_id].field = angular.copy(column)
+    }
+
+    $scope.postQuery = function(){
+        console.log($scope.groups);
     }
 });

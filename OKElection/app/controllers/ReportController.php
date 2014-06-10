@@ -104,39 +104,7 @@ class ReportController extends BaseController {
      */
     public function postQuery()
     {
-        /*
-        $county      = Input::get('county_code');
-        $dates       = explode(',', Input::get('election_dates'));
-        $appears     = Input::get('appears');
-        $affiliation = Input::get('affiliation');
-
-        $form                                  = [];
-        $form['county_code']                   = Input::get('county_code');
-        $form['election_dates']                = Input::get('election_dates');
-        $form['appears']                       = Input::get('appears');
-        $form['affiliation']                   = ['options' => array(), 'selected' => Input::get('affiliation')];
-        $form['affiliation']['options']['0']   = 'All';
-        $form['affiliation']['options']['DEM'] = 'Democratic';
-        $form['affiliation']['options']['REP'] = 'Republican';
-        $form['affiliation']['options']['IND'] = 'Independent';
-        $form['counties']                      = ['options' => County::all()->toArray(), 'selected' => Input::get('county_code')];
-
-        $voters = Report::getGeneralQuery($county, $affiliation, $appears, $dates);
-
-        $count = (isset($voters))? $voters->count(): 0;
-
-        $placeholder_date = date('Ymd');
-
-        return View::make('report/query')
-            ->with('voters', $voters )
-            ->with('active','queryvoter')
-            ->with('form', $form)
-            ->with('count', $count)
-            ->with('placeholder_date', $placeholder_date);
-        */
-
         $query = base64_decode(Input::get('q'));
-        $len = strlen($query);
 
         $parsed = array();
         $groups = explode(')', $query);
@@ -212,13 +180,6 @@ class ReportController extends BaseController {
 
         $voters = $query->get();
 
-
-        $queries = DB::getQueryLog();
-        $last_query = end($queries);
-
-
-        //print_r($parsed);
-        //print_r($last_query);
         echo $voters->count();
     }
 }

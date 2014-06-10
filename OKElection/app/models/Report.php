@@ -113,8 +113,11 @@ class Report {
         $election_dates = Calendar::getElectionDates();
         $election_date_fields = array();
         foreach($election_dates as $election_date){
-            $election_date['name'] = date('m/d/Y', strtotime($election_date['start']));
-            $election_date['value'] = $election_date['start'];
+            if(date('m/d/Y', $election_date['start']) == '01/01/1970'){
+                continue;
+            }
+            $election_date['name'] = date('m/d/Y', $election_date['start']);
+            $election_date['value'] = date('Y-m-d', $election_date['start']);
             $election_date_fields[] = $election_date;
         }
         $fields[] = new QueryField(

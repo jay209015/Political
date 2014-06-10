@@ -15,7 +15,7 @@ class QueryField {
     public $comparison;
     public $operator;
 
-    public function __construct($name='field', $options=array(), $value='', $title='Field', $type='select', $operator=0, $comparison=0)
+    public function __construct($name='field', $options=array(), $value='', $title='Field', $type='select', $operator='AND', $comparison='=')
     {
         $this->name = $name;
         $this->options = $options;

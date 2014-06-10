@@ -3,7 +3,7 @@ var QueryBuilder = angular.module('QueryBuilder', [], function($interpolateProvi
     $interpolateProvider.endSymbol('%>');
 });
 
-QueryBuilder.controller('QueryFields', function ($scope, $filter) {
+QueryBuilder.controller('QueryFields', function ($scope, $filter, $http) {
 
     $scope.queryString = '';
 
@@ -13,22 +13,23 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
 
     $scope.columns = queryFields;
 
+    $scope.queryResults = "Please run a query";
+
 
     $scope.defaultField = angular.copy($scope.columns[0]);
 
     $scope.defaultGroup = {
-        rows: [
-            {
-                field: angular.copy($scope.defaultField)
-            }
-        ],
-        'operator': $scope.operators[0]
+        rows: [],
+        operator: $scope.operators[0]
     };
 
     $scope.groups = [];
 
     $scope.addRow = function(group){
-        group.rows.push({field: angular.copy($scope.defaultField)});
+        group.rows.push({
+            field: angular.copy($scope.defaultField),
+            type: 'field'
+        });
     };
 
     $scope.removeRow = function(group_id, row_id){
@@ -36,14 +37,14 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
 
     };
 
-    $scope.addGroup = function(){
-        $scope.groups.push({
-            rows: [
-                {
-                    field: angular.copy($scope.defaultField)
-                }
-            ]
-        });
+    $scope.addGroup = function(group_id){
+        if(typeof group_id != 'undefined'){
+            $scope.groups[group_id].rows.push(angular.copy($scope.defaultGroup));
+            var last_row_index = $scope.groups[group_id].rows.length - 1;
+            $scope.groups[group_id].rows[last_row_index].type = 'group';
+        }else{
+            $scope.groups.push(angular.copy($scope.defaultGroup));
+        }
     };
 
     $scope.removeGroup = function(group_id){
@@ -59,9 +60,12 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
 
         angular.forEach($scope.groups, function(group, group_id) {
 
-            if(typeof group.operator != 'undefined' && $scope.operators.indexOf(group.operator) != -1 ){
-                $scope.queryString += ' ' +group.operator+ ' ';
+            if($scope.queryString.length > 0){
+                if(typeof group.operator != 'undefined' && $scope.operators.indexOf(group.operator) != -1 ){
+                    $scope.queryString += ' ' +group.operator+ ' ';
+                }
             }
+
             $scope.queryString += '(';
 
             row_index = 0;
@@ -88,5 +92,11 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter) {
 
         console.log($scope.queryString);
         console.log(Base64.encode($scope.queryString));
+
+
+
+        $http.post('/reports/query', {q:Base64.encode($scope.queryString)}).success(function(data){
+           $scope.queryResults = data;
+        })
     }
 });

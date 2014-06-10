@@ -98,13 +98,13 @@ class ReportController extends BaseController {
             ->with('placeholder_date', $placeholder_date);
     }
 
-
     /**
      * Process the user query and return count
      * @return mixed
      */
     public function postQuery()
     {
+        /*
         $county      = Input::get('county_code');
         $dates       = explode(',', Input::get('election_dates'));
         $appears     = Input::get('appears');
@@ -133,5 +133,48 @@ class ReportController extends BaseController {
             ->with('form', $form)
             ->with('count', $count)
             ->with('placeholder_date', $placeholder_date);
+        */
+
+        $query = base64_decode(Input::get('q'));
+        $len = strlen($query);
+
+        $parsed = array();
+        $groups = explode(')', $query);
+
+        foreach($groups as $group){
+            $split = explode('(', $group);
+            foreach($split as $part){
+                if(trim($part)){
+                    $parsed[] = trim($part);
+                }
+            }
+        }
+
+        $comparisons = ['=', '!=', '>', '>=', '<', '<='];
+        foreach($parsed as $key => $part){
+            if(strlen($part) > 3){
+               $part = str_replace('AND', '|AND|', $part);
+               $part = str_replace('OR', '|OR|', $part);
+               $group_parts = explode('|', $part);
+
+                foreach($group_parts as $k => $v){
+                    $v = trim($v);
+
+                    if(strlen($v) > 3){
+                        foreach($comparisons as $comparator){
+                            $v = str_replace(" $comparator ", "|$comparator|", $v);
+                        }
+                        $v = explode('|', $v);
+                    }
+                    $group_parts[$k] = $v;
+                }
+
+               $parsed[$key] = $group_parts;
+            }
+        }
+
+        print_r($parsed);
+        echo $query;
+        echo 10000;
     }
 }

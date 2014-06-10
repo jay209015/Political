@@ -97,7 +97,7 @@ class Report {
 
         $county_fields = array();
         foreach($counties as $county){
-            $county['value'] = $county['name'];
+            $county['value'] = $county['id'];
             $county_fields[] = $county;
         }
 
@@ -139,7 +139,7 @@ class Report {
             )
         );
         $fields[] = new QueryField(
-            'affiliation',
+            'political_affiliation',
             $affiliation_fields,
             $affiliation_fields[0],
             'Political Affiliation'

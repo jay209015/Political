@@ -173,8 +173,52 @@ class ReportController extends BaseController {
             }
         }
 
-        print_r($parsed);
-        echo $query;
-        echo 10000;
+        $query = Voter::select(array('voters.voter_id_num', DB::raw('COUNT(*) as `count`')));
+        $query->join('histories', 'histories.voter_id_num', '=', 'voters.voter_id_num');
+
+        $operator = 'AND';
+        foreach($parsed as $group){
+            if(strtolower($operator) == 'or'){
+                $method = 'orWhere';
+            }else{
+                $method = 'where';
+            }
+
+            if(is_array($group)){
+                $query->$method(function($query) use($group) {
+                    $sub_operator = 'AND';
+                    foreach($group as $field){
+                        if(is_array($field)){
+                            if(strtolower($sub_operator) == 'or'){
+                                $sub_method = 'orWhere';
+                            }else{
+                                $sub_method = 'where';
+                            }
+                            $column = $field[0];
+                            $comparator = str_replace('!=', '<>', $field[1]);
+                            $value = $field[2];
+                            $query->$sub_method($column, $comparator, $value);
+                        }else{
+                            $sub_operator = $field;
+                        }
+                    }
+                });
+            }else{
+                $operator = $group;
+            }
+        }
+
+        $query->groupBy('voters.voter_id_num');
+
+        $voters = $query->get();
+
+
+        $queries = DB::getQueryLog();
+        $last_query = end($queries);
+
+
+        //print_r($parsed);
+        //print_r($last_query);
+        echo $voters->count();
     }
 }

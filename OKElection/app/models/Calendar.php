@@ -49,7 +49,7 @@ class Calendar {
      * @return mixed
      */
     public static function getElectionCandidates($mysql_date){
-        $candidates = Candidate::select('first_name', 'last_name')
+        $candidates = Candidate::select('first_name', 'last_name', 'office', 'zip_code')
             ->where('prim_or_runoff_date', '=', $mysql_date)
             ->orWhere('elec_date', '=', $mysql_date)
             ->get()

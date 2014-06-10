@@ -117,7 +117,7 @@ class Report {
                 continue;
             }
             $election_date['name'] = date('m/d/Y', $election_date['start']);
-            $election_date['value'] = date('Y-m-d', $election_date['start']);
+            $election_date['value'] = date('Ymd', $election_date['start']);
             $election_date_fields[] = $election_date;
         }
         $fields[] = new QueryField(

@@ -12,5 +12,4 @@ class History extends Eloquent {
     public function voter() {
         return $this->belongsTo('Voter', 'voter_id_num', 'voter_id_num');
     }
-
 } 

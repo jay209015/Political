@@ -90,11 +90,6 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter, $http) {
             $scope.queryString += ')';
         });
 
-        console.log($scope.queryString);
-        console.log(Base64.encode($scope.queryString));
-
-
-
         $http.post('/reports/query', {q:Base64.encode($scope.queryString)}).success(function(data){
            $scope.queryResults = data;
         })

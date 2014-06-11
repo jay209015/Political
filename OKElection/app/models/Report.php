@@ -110,7 +110,7 @@ class Report {
         );
 
 
-        $election_dates = Election::all();
+        $election_dates = Election::orderBy('election_date', 'ASC')->get();
         $election_date_fields = array();
         foreach($election_dates as $election_date){
             $field = array();

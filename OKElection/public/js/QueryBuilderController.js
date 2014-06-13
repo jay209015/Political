@@ -25,18 +25,6 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter, $http) {
 
     $scope.groups = [];
 
-    $scope.addRow = function(group){
-        group.rows.push({
-            field: angular.copy($scope.defaultField),
-            type: 'field'
-        });
-    };
-
-    $scope.removeRow = function(group_id, row_id){
-        $scope.groups[group_id].rows.splice(row_id,1);
-
-    };
-
     $scope.addGroup = function(group_id){
         if(typeof group_id != 'undefined'){
             $scope.groups[group_id].rows.push(angular.copy($scope.defaultGroup));
@@ -46,6 +34,17 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter, $http) {
             $scope.groups.push(angular.copy($scope.defaultGroup));
         }
     };
+
+    $scope.addRow = function(group_id){
+        $scope.groups[group_id].rows.push({
+            field:angular.copy($scope.defaultField),
+            type: 'field'
+        });
+    }
+
+    $scope.removeRow = function(group_id, row_id){
+        $scope.groups[group_id].rows.splice(row_id,1);
+    }
 
     $scope.removeGroup = function(group_id){
         $scope.groups.splice(group_id,1);

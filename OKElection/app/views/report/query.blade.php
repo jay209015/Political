@@ -1,6 +1,7 @@
 @extends('master')
 
 @section('assets')
+<link href="{{asset('css/multiselect.css')}}" rel="stylesheet" />
 <link href="{{asset('css/queryBuilder.css')}}" rel="stylesheet" />
 @stop
 
@@ -32,11 +33,12 @@
                         <select ng-model="updatedColumn" ng-change="changeColumn(group_id, row_id, updatedColumn)" ng-options="column.title for column in columns"></select>
                     </td>
                     <td>
-                        <select ng-model="row.field.comparison" ng-options="comparison for comparison in comparisons"></select>
+                        <select ng-model="row.field.comparison" ng-change="changeComparison(group_id, row_id, row.field.comparison)" ng-options="comparison.display for comparison in comparisons"></select>
                     </td>
                     <td>
-                        <select ng-model="row.field.value" ng-if="row.field.type == 'select'" ng-options="option.name for option in row.field.options"></select>
-                        <input ng-model="row.field.value" ng-if="row.field.type == 'text'" type="text" />
+                        <select ng-model="row.field.value" ng-class="row.field.class" ng-if="row.field.type == 'select'" ng-options="option.name for option in row.field.options"></select>
+                        <select ng-model="row.field.value" class="multiselect-<%group_id%>-<%row_id%>" ng-if="row.field.type == 'multiselect'" multiple="multiple" ng-options="option.name for option in row.field.options"></select>
+                        <input ng-model="row.field.value" ng-class="row.field.class" ng-if="row.field.type == 'text'" type="text" />
                     </td>
                     <td>
                         <button class="btn btn-xs group-btn" ng-click="removeRow(group_id, row_id)"><span class="glyphicon glyphicon-minus"></span></button>
@@ -52,7 +54,7 @@
 
     <div ng-controller="QueryFields">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="group" ng-repeat="(group_id, group) in groups" ng-include="'group_template.html'"></div>
                 <div>
                     <button class="group-btn group-add" ng-click="addGroup()"><span class="glyphicon glyphicon-plus"></span> Add Group</button>
@@ -60,13 +62,8 @@
                 </div>
                 <button class="group-btn" ng-click="postQuery()">Search</button>
             </div>
-            <div class="col-md-6">
-                <table class="table table-striped table-bordered">
-                    <tr>
-                        <td>Total Voters</td>
-                        <td><pre><%queryResults%></pre></td>
-                    </tr>
-                </table>
+            <div class="col-md-4 group">
+                Total Voters: <pre><%queryResults%></pre>
             </div>
         </div>
     </div>
@@ -75,8 +72,10 @@
 
 <script type="text/javascript">
     var queryFields = <?=json_encode($fields);?>;
+    var queryComparisons = <?=json_encode($comparisons);?>
 </script>
 <script src="{{asset('js/encoding.js')}}"></script>
+<script src="{{asset('js/multiselect.js')}}"></script>
 <script src="{{asset('js/QueryBuilderController.js')}}"></script>
 <script src="{{asset('js/QueryGroupModel.js')}}"></script>
 <script src="{{asset('js/QueryRowModel.js')}}"></script>

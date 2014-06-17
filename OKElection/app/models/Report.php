@@ -88,6 +88,40 @@ class Report {
         return $num_votes;
     }
 
+    public static function getQueryComparisons(){
+        $comparisons = array();
+        $comparisons[] = array(
+            'display' => 'equal to',
+            'value' => '='
+        );
+        $comparisons[] = array(
+            'display' => 'not equal to',
+            'value' => '<>'
+        );
+        $comparisons[] = array(
+            'display' => 'greater than',
+            'value' => '>'
+        );
+        $comparisons[] = array(
+            'display' => 'greater than or equal to',
+            'value' => '>='
+        );
+        $comparisons[] = array(
+            'display' => 'less than',
+            'value' => '<'
+        );
+        $comparisons[] = array(
+            'display' => 'less than or equal to',
+            'value' => '<='
+        );
+        $comparisons[] = array(
+            'display' => 'any of these',
+            'value' => 'IN'
+        );
+
+        return $comparisons;
+    }
+
     /**
      * Get an array of query fields for the query tool
      * @return array
@@ -105,7 +139,7 @@ class Report {
         $fields[] = new QueryField(
             'county',
             $county_fields,
-            $county_fields[0],
+            $county_fields[0]['value'],
             'County'
         );
 
@@ -121,7 +155,7 @@ class Report {
         $fields[] = new QueryField(
             'election_date',
             $election_date_fields,
-            $election_date_fields[0],
+            $election_date_fields[0]['value'],
             'Election Date'
         );
 
@@ -142,7 +176,7 @@ class Report {
         $fields[] = new QueryField(
             'political_affiliation',
             $affiliation_fields,
-            $affiliation_fields[0],
+            $affiliation_fields[0]['value'],
             'Political Affiliation'
         );
 

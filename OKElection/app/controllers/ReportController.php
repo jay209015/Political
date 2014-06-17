@@ -84,6 +84,7 @@ class ReportController extends BaseController {
         $form['affiliation']['options']['IND'] = 'Independent';
         $form['counties'] = ['options' => County::all()->toArray(), 'selected' => ''];
         $fields = Report::getQueryFields();
+        $comparisons = Report::getQueryComparisons();
 
 
         $count = (isset($voters))? $voters->count(): 0;
@@ -94,6 +95,7 @@ class ReportController extends BaseController {
             ->with('active','queryvoter')
             ->with('form', $form)
             ->with('fields', $fields)
+            ->with('comparisons', $comparisons)
             ->with('count', $count)
             ->with('placeholder_date', $placeholder_date);
     }
@@ -118,7 +120,11 @@ class ReportController extends BaseController {
             }
         }
 
-        $comparisons = ['=', '!=', '>', '>=', '<', '<='];
+        $comparisons = Report::getQueryComparisons();
+        $comparison_search = array();
+        foreach($comparisons as $comparator){
+            $comparison_search[] = $comparator['display'];
+        }
         foreach($parsed as $key => $part){
             if(strlen($part) > 3){
                $part = str_replace('AND', '|AND|', $part);
@@ -127,10 +133,11 @@ class ReportController extends BaseController {
 
                 foreach($group_parts as $k => $v){
                     $v = trim($v);
-
                     if(strlen($v) > 3){
                         foreach($comparisons as $comparator){
-                            $v = str_replace(" $comparator ", "|$comparator|", $v);
+                            $v = str_replace(" {$comparator['value']} ", "|{$comparator['value']}|", $v);
+                            $v = str_replace('[','(', $v);
+                            $v = str_replace(']',')', $v);
                         }
                         $v = explode('|', $v);
                     }
@@ -163,9 +170,17 @@ class ReportController extends BaseController {
                                 $sub_method = 'where';
                             }
                             $column = $field[0];
-                            $comparator = str_replace('!=', '<>', $field[1]);
+                            $comparator = $field[1];
                             $value = $field[2];
-                            $query->$sub_method($column, $comparator, $value);
+
+                            if($comparator == 'IN'){
+                                $query->$sub_method(function($query) use($column, $value){
+                                    $values = str_replace(array('(',')'), '', $value);
+                                    $query->whereIn($column, explode(',', $values));
+                                });
+                            }else{
+                                $query->$sub_method($column, $comparator, $value);
+                            }
                         }else{
                             $sub_operator = $field;
                         }
@@ -180,6 +195,6 @@ class ReportController extends BaseController {
 
         $voters = $query->get();
 
-        echo $voters->count();
+        echo number_format($voters->count(), 0);
     }
 }

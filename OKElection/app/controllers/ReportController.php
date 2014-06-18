@@ -212,7 +212,7 @@ class ReportController extends BaseController {
         $last_query = end($queries);
         print_r($last_query);
         */
-        
+
         echo number_format($voters->count(), 0);
     }
 }

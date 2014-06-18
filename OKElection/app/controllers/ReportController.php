@@ -173,10 +173,22 @@ class ReportController extends BaseController {
                             $comparator = $field[1];
                             $value = $field[2];
 
-                            if($comparator == 'IN'){
+                            if($comparator == 'IS:IN'){
                                 $query->$sub_method(function($query) use($column, $value){
                                     $values = str_replace(array('(',')'), '', $value);
                                     $query->whereIn($column, explode(',', $values));
+                                });
+                            }elseif($comparator == 'NOT:IN'){
+                                $query->$sub_method(function($query) use($column, $value){
+                                    $values = str_replace(array('(',')'), '', $value);
+                                    $query->whereNotIn($column, explode(',', $values));
+                                });
+                            }elseif($comparator == 'IN:ALL'){
+                                $query->$sub_method(function($query) use($column, $value){
+                                    $values = explode(',',str_replace(array('(',')'), '', $value));
+                                    foreach($values as $value){
+                                        $query->where($column, $value);
+                                    }
                                 });
                             }else{
                                 $query->$sub_method($column, $comparator, $value);
@@ -195,6 +207,12 @@ class ReportController extends BaseController {
 
         $voters = $query->get();
 
+        /*
+        $queries = DB::getQueryLog();
+        $last_query = end($queries);
+        print_r($last_query);
+        */
+        
         echo number_format($voters->count(), 0);
     }
 }

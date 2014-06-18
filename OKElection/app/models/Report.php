@@ -91,32 +91,40 @@ class Report {
     public static function getQueryComparisons(){
         $comparisons = array();
         $comparisons[] = array(
-            'display' => 'equal to',
+            'display' => 'is',
             'value' => '='
         );
         $comparisons[] = array(
-            'display' => 'not equal to',
+            'display' => 'is not',
             'value' => '<>'
         );
         $comparisons[] = array(
-            'display' => 'greater than',
+            'display' => 'is greater than',
             'value' => '>'
         );
         $comparisons[] = array(
-            'display' => 'greater than or equal to',
+            'display' => 'is greater than or equal to',
             'value' => '>='
         );
         $comparisons[] = array(
-            'display' => 'less than',
+            'display' => 'is less than',
             'value' => '<'
         );
         $comparisons[] = array(
-            'display' => 'less than or equal to',
+            'display' => 'is less than or equal to',
             'value' => '<='
         );
         $comparisons[] = array(
-            'display' => 'any of these',
-            'value' => 'IN'
+            'display' => 'is any of these',
+            'value' => 'IS:IN'
+        );
+        $comparisons[] = array(
+            'display' => 'is none of these',
+            'value' => 'NOT:IN'
+        );
+        $comparisons[] = array(
+            'display' => 'is all of these',
+            'value' => 'IN:ALL'
         );
 
         return $comparisons;

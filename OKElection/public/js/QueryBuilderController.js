@@ -57,8 +57,7 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter, $http) {
     }
 
     $scope.changeComparison = function(group_id, row_id, comparison){
-        console.log($scope.groups[group_id].rows[row_id]);
-        if(comparison.value == 'IN'){
+        if(comparison.value.indexOf(':') != -1){
             // Enable multiselect
             $scope.groups[group_id].rows[row_id].field.type = 'multiselect';
             $scope.$apply();
@@ -113,7 +112,6 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter, $http) {
                             }
                         });
                         $scope.queryString += ']';
-                        console.log(selected);
                     }else{
                         $scope.queryString += row.field.value.value;
                     }
@@ -126,8 +124,6 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter, $http) {
 
             $scope.queryString += ')';
         });
-
-        console.log($scope.queryString);
 
         $http.post('/reports/query', {q:Base64.encode($scope.queryString)}).success(function(data){
            $scope.queryResults = data;

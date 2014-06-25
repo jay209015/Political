@@ -60,7 +60,8 @@
                     <button class="group-btn group-add" ng-click="addGroup()"><span class="glyphicon glyphicon-plus"></span> Add Group</button>
                     <div style="clear:both"></div>
                 </div>
-                <button class="group-btn" ng-click="postQuery()">Search</button>
+                 <button class="group-btn" ng-click="postQuery()">Search</button>
+                 <button class="group-btn" ng-click="exportQuery()">Export</button>
             </div>
             <div class="col-md-4 group">
                 Total Voters: <pre><%queryResults%></pre>

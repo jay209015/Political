@@ -106,105 +106,9 @@ class ReportController extends BaseController {
      */
     public function postQuery()
     {
-        $query = base64_decode(Input::get('q'));
-
-        $parsed = array();
-        $groups = explode(')', $query);
-
-        foreach($groups as $group){
-            $split = explode('(', $group);
-            foreach($split as $part){
-                if(trim($part)){
-                    $parsed[] = trim($part);
-                }
-            }
-        }
-
-        $comparisons = Report::getQueryComparisons();
-        $comparison_search = array();
-        foreach($comparisons as $comparator){
-            $comparison_search[] = $comparator['display'];
-        }
-        foreach($parsed as $key => $part){
-            if(strlen($part) > 3){
-               $part = str_replace('AND', '|AND|', $part);
-               $part = str_replace('OR', '|OR|', $part);
-               $group_parts = explode('|', $part);
-
-                foreach($group_parts as $k => $v){
-                    $v = trim($v);
-                    if(strlen($v) > 3){
-                        foreach($comparisons as $comparator){
-                            $v = str_replace(" {$comparator['value']} ", "|{$comparator['value']}|", $v);
-                            $v = str_replace('[','(', $v);
-                            $v = str_replace(']',')', $v);
-                        }
-                        $v = explode('|', $v);
-                    }
-                    $group_parts[$k] = $v;
-                }
-
-               $parsed[$key] = $group_parts;
-            }
-        }
-
-        $query = Voter::select(array('voters.voter_id_num', DB::raw('COUNT(*) as `count`')));
-        $query->join('histories', 'histories.voter_id_num', '=', 'voters.voter_id_num');
-
-        $operator = 'AND';
-        foreach($parsed as $group){
-            if(strtolower($operator) == 'or'){
-                $method = 'orWhere';
-            }else{
-                $method = 'where';
-            }
-
-            if(is_array($group)){
-                $query->$method(function($query) use($group) {
-                    $sub_operator = 'AND';
-                    foreach($group as $field){
-                        if(is_array($field)){
-                            if(strtolower($sub_operator) == 'or'){
-                                $sub_method = 'orWhere';
-                            }else{
-                                $sub_method = 'where';
-                            }
-                            $column = $field[0];
-                            $comparator = $field[1];
-                            $value = $field[2];
-
-                            if($comparator == 'IS:IN'){
-                                $query->$sub_method(function($query) use($column, $value){
-                                    $values = str_replace(array('(',')'), '', $value);
-                                    $query->whereIn($column, explode(',', $values));
-                                });
-                            }elseif($comparator == 'NOT:IN'){
-                                $query->$sub_method(function($query) use($column, $value){
-                                    $values = str_replace(array('(',')'), '', $value);
-                                    $query->whereNotIn($column, explode(',', $values));
-                                });
-                            }elseif($comparator == 'IN:ALL'){
-                                $query->$sub_method(function($query) use($column, $value){
-                                    $values = explode(',',str_replace(array('(',')'), '', $value));
-                                    foreach($values as $value){
-                                        $query->where($column, $value);
-                                    }
-                                });
-                            }else{
-                                $query->$sub_method($column, $comparator, $value);
-                            }
-                        }else{
-                            $sub_operator = $field;
-                        }
-                    }
-                });
-            }else{
-                $operator = $group;
-            }
-        }
-
-        $query->groupBy('voters.voter_id_num');
-
+        $query_string = base64_decode(Input::get('q'));
+        $parsed = Report::parseQuery($query_string);
+        $query = Report::buildQuery($parsed);
         $voters = $query->get();
 
         /*
@@ -214,5 +118,61 @@ class ReportController extends BaseController {
         */
 
         echo number_format($voters->count(), 0);
+    }
+
+    public function postExportQuery(){
+        $query_string = base64_decode(Input::get('q'));
+        $parsed = Report::parseQuery($query_string);
+        $query = Report::buildQuery($parsed, true);
+        $results = $query->get()->toArray();
+
+        $voter_ids = array();
+        foreach($results as $result){
+            $voter_ids[] = $result['voter_id_num'];
+        }
+
+        $csv_data = array();
+
+
+        $voters = Voter::select(
+                'first_name',
+                'last_name',
+                'mailing_street_address_1',
+                'mailing_street_address_2',
+                'mailing_address_city',
+                'mailing_address_state',
+                'mailing_address_zip_code'
+            )
+            ->whereIn('voter_id_num', $voter_ids)
+            ->get()
+            ->toArray();
+
+        $headers = array(
+            'First Name',
+            'Last Name',
+            'Mailing Street Address 1',
+            'Mailing Street Address 2',
+            'Mailing Address City',
+            'Mailing Address State',
+            'Mailing Address Zip Code'
+        );
+
+        array_push($csv_data, $headers);
+
+        foreach($voters as $voter){
+            array_push($csv_data, array_values($voter));
+        }
+
+        $path = public_path('downloads');
+        $file = date('Y-m-d-His').'_query-export.csv';
+        $path .= '/'.$file;
+
+        $fp = fopen($path, 'w');
+        foreach ($csv_data as $fields) {
+            fputcsv($fp, $fields);
+        }
+        fclose($fp);
+
+        echo '/downloads/'.$file;
     }
 }

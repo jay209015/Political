@@ -234,4 +234,113 @@ class Report {
         exit();
         */
     }
+
+    public static function parseQuery($query_string){
+        $parsed = array();
+        $groups = explode(')', $query_string);
+
+        foreach($groups as $group){
+            $split = explode('(', $group);
+            foreach($split as $part){
+                if(trim($part)){
+                    $parsed[] = trim($part);
+                }
+            }
+        }
+
+        $comparisons = Report::getQueryComparisons();
+        $comparison_search = array();
+        foreach($comparisons as $comparator){
+            $comparison_search[] = $comparator['display'];
+        }
+        foreach($parsed as $key => $part){
+            if(strlen($part) > 3){
+                $part = str_replace('AND', '|AND|', $part);
+                $part = str_replace('OR', '|OR|', $part);
+                $group_parts = explode('|', $part);
+
+                foreach($group_parts as $k => $v){
+                    $v = trim($v);
+                    if(strlen($v) > 3){
+                        foreach($comparisons as $comparator){
+                            $v = str_replace(" {$comparator['value']} ", "|{$comparator['value']}|", $v);
+                            $v = str_replace('[','(', $v);
+                            $v = str_replace(']',')', $v);
+                        }
+                        $v = explode('|', $v);
+                    }
+                    $group_parts[$k] = $v;
+                }
+
+                $parsed[$key] = $group_parts;
+            }
+        }
+
+        return $parsed;
+    }
+
+    public static function buildQuery($parsed_query, $id_only=false){
+        if($id_only){
+            $query = Voter::select(array('voters.voter_id_num'));
+        }else{
+            $query = Voter::select(array('voters.voter_id_num', DB::raw('COUNT(*) as `count`')));
+        }
+
+        $query->join('histories', 'histories.voter_id_num', '=', 'voters.voter_id_num');
+
+        $operator = 'AND';
+        foreach($parsed_query as $group){
+            if(strtolower($operator) == 'or'){
+                $method = 'orWhere';
+            }else{
+                $method = 'where';
+            }
+
+            if(is_array($group)){
+                $query->$method(function($query) use($group) {
+                    $sub_operator = 'AND';
+                    foreach($group as $field){
+                        if(is_array($field)){
+                            if(strtolower($sub_operator) == 'or'){
+                                $sub_method = 'orWhere';
+                            }else{
+                                $sub_method = 'where';
+                            }
+                            $column = $field[0];
+                            $comparator = $field[1];
+                            $value = $field[2];
+
+                            if($comparator == 'IS:IN'){
+                                $query->$sub_method(function($query) use($column, $value){
+                                    $values = str_replace(array('(',')'), '', $value);
+                                    $query->whereIn($column, explode(',', $values));
+                                });
+                            }elseif($comparator == 'NOT:IN'){
+                                $query->$sub_method(function($query) use($column, $value){
+                                    $values = str_replace(array('(',')'), '', $value);
+                                    $query->whereNotIn($column, explode(',', $values));
+                                });
+                            }elseif($comparator == 'IN:ALL'){
+                                $query->$sub_method(function($query) use($column, $value){
+                                    $values = explode(',',str_replace(array('(',')'), '', $value));
+                                    foreach($values as $value){
+                                        $query->where($column, $value);
+                                    }
+                                });
+                            }else{
+                                $query->$sub_method($column, $comparator, $value);
+                            }
+                        }else{
+                            $sub_operator = $field;
+                        }
+                    }
+                });
+            }else{
+                $operator = $group;
+            }
+        }
+
+        $query->groupBy('voters.voter_id_num');
+        return $query;
+    }
 }

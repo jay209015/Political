@@ -73,7 +73,7 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter, $http) {
 
     $scope.addGroup();
 
-    $scope.postQuery = function(){
+    $scope.buildQuery = function(){
         $scope.queryString = '';
         var selected;
         var value;
@@ -124,9 +124,24 @@ QueryBuilder.controller('QueryFields', function ($scope, $filter, $http) {
 
             $scope.queryString += ')';
         });
+    }
 
+    $scope.postQuery = function(){
+
+        $scope.buildQuery();
+
+        $scope.queryResults = 'Loading';
         $http.post('/reports/query', {q:Base64.encode($scope.queryString)}).success(function(data){
            $scope.queryResults = data;
+        })
+    }
+
+    $scope.exportQuery = function(){
+
+        $scope.buildQuery();
+
+        $http.post('/reports/export-query', {q:Base64.encode($scope.queryString)}).success(function(data){
+            location.href = data;
         })
     }
 });

@@ -56,6 +56,7 @@
 <!--                <li><a href="#">Generate Full Report</a></li>-->
                 <li {{$active == "queryvoter"? 'class="active"':''}}><a href="{{url('reports/query', $parameters = array(), $secure = null);}}">Query Voters</a></li>
                 <li {{$active == "uniquevotersincounties"? 'class="active"':''}}><a href="{{url('reports/unique-voters-per-county', $parameters = array(), $secure = null);}}">List Information by County Name</a></li>
+                <li {{$active == "listupload"? 'class="active"':''}}><a href="{{url('reports/list-upload', $parameters = array(), $secure = null);}}">Upload List</a></li>
 <!--                <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
                 <li><a href="#">Separated link</a></li>

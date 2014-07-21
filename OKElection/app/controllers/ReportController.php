@@ -175,4 +175,72 @@ class ReportController extends BaseController {
 
         echo '/downloads/'.$file;
     }
+
+    public function getListUpload(){
+        $csv_header = false;
+        $csv_data = array();
+        $fields = array();
+
+        return View::make('report/listupload')
+            ->with('csv_header',$csv_header)
+            ->with('csv_data',$csv_data)
+            ->with('fields',$fields)
+            ->with('active','listupload');
+    }
+
+    public function postListUpload(){
+        $File = Input::file('file');
+        $header = Input::get('header');
+        $csv_data = array();
+        $csv_header = false;
+        $fields = Report::getListFields();
+
+        $filepath = $File->getRealPath();
+
+        if (($handle = fopen($filepath, "r")) !== false) {
+            while (($row = fgetcsv($handle, 1000, ",")) !== false) {
+                if($header && $csv_header == false){
+                   $csv_header = $row;
+                }else{
+                   $csv_data[] = $row;
+                }
+            }
+            fclose($handle);
+        }
+
+        $destinationPath = storage_path().'/uploads';
+        $filename = 'FieldMap_'.date('m-d-y_his').'.csv';
+        $File->move($destinationPath, $filename);
+
+        $_SESSION['file'] = $filename;
+        $_SESSION['header'] = $header;
+        Session::put('file', $filename);
+
+        return View::make('report/listupload')
+            ->with('csv_header',$csv_header)
+            ->with('csv_data',$csv_data)
+            ->with('fields',$fields)
+            ->with('active','listupload');
+    }
+
+    public function postMapCsv(){
+        $filepath = storage_path().'/uploads';
+        $file = $filepath.'/'.Session::get('file');;
+        $fields = Report::getListFields();
+        $map = Input::get('field');
+        $excluded_columns = array();
+        $mapping = array();
+        foreach($map as $column => $data){
+            $mapped = $data[0];
+            if($mapped == 'none'){
+                $excluded_columns[] = $column;
+            }else{
+                $mapping[$column] = $mapped;
+            }
+        }
+
+        $parsed = Report::mapCsv($file, Session::get('header'), $mapping, $excluded_columns);
+        echo '<pre>';
+        print_r($parsed);
+    }
 }

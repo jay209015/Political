@@ -4,4 +4,5 @@
 
 /sql/okelection.sql
 /OKElection/public/downloads/*
+/OKElection/app/storage/uploads/*
 .DS_Store

@@ -240,7 +240,28 @@ class ReportController extends BaseController {
         }
 
         $parsed = Report::mapCsv($file, Session::get('header'), $mapping, $excluded_columns);
-        echo '<pre>';
-        print_r($parsed);
+
+        $out_csv = str_replace('.csv', '_mapped.csv', $file);
+        Session::put('mapped_file', $out_csv);
+
+        $handle = fopen($out_csv, 'w');
+        foreach ($parsed as $fields) {
+            fputcsv($handle, $fields);
+        }
+        fclose($handle);
+
+        return View::make('report/listpreview')
+            ->with('excluded_columns',$excluded_columns)
+            ->with('parsed',$parsed)
+            ->with('fields',$fields)
+            ->with('active','listupload');
+    }
+
+    public function getDownloadCsv(){
+        if($file = Session::get('mapped_file')){
+            return Response::download($file);
+        }else{
+            Redirect::to('reports/list-preview');
+        }
     }
 }

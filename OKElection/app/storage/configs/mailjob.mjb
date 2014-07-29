@@ -1,6 +1,8 @@
 [NEWLISTTEMPLATE-1]
 SETTINGS="Print Place Layout"
 FILENAME="C:\BCC\MM2010\Lists\{job_id}.dbf"
+OVERWRITE=Y
+USEINDEXES=Y
 
 
 [IMPORT-2]

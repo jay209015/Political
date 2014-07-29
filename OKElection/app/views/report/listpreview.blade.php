@@ -11,7 +11,10 @@
 
 <div class="row col-md-12">
     <div class="col-md-12">
-        <h2>List Preview <a class="btn btn-info" href="/reports/download-csv">Download CSV</a></h2>
+        <h2>List Preview (Job ID: <?=$job_id?>)
+            <a class="btn btn-info" href="/reports/download-csv">Download CSV</a>
+            <a class="btn btn-info" href="/reports/download-mfb">Download MJB</a>
+        </h2>
         <table class="table table-bordered table-condensed">
             <thead>
                 <tr>

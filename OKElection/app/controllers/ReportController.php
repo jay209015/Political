@@ -250,16 +250,33 @@ class ReportController extends BaseController {
         }
         fclose($handle);
 
+        $job_id = Job::getNextID();
+        Session::put('job_id', $job_id);
+
         return View::make('report/listpreview')
             ->with('excluded_columns',$excluded_columns)
             ->with('parsed',$parsed)
+            ->with('job_id',$job_id)
             ->with('fields',$fields)
             ->with('active','listupload');
     }
 
     public function getDownloadCsv(){
         if($file = Session::get('mapped_file')){
-            return Response::download($file);
+            $job_id = Session::get('job_id');
+            return Response::download($file, "$job_id.csv");
+        }else{
+            Redirect::to('reports/list-preview');
+        }
+    }
+
+    public function getDownloadMfb(){
+        if($job_id = Session::get('job_id')){
+            $filepath = storage_path().'/configs/mailjob.mjb';
+            $template = file_get_contents($filepath);
+            $new_config = str_replace('{job_id}', $job_id, $template);
+            file_put_contents(storage_path().'/job_files/'.$job_id.'.mjb', $new_config);
+            return Response::download(storage_path().'/job_files/'.$job_id.'.mjb');
         }else{
             Redirect::to('reports/list-preview');
         }

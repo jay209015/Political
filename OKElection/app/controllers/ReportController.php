@@ -270,10 +270,48 @@ class ReportController extends BaseController {
         }
     }
 
+    public function postUpdateOptions(){
+        $options = Input::get('options');
+        Session::put('mail_options', $options);
+    }
+
     public function getDownloadMfb(){
         if($job_id = Session::get('job_id')){
             $filepath = storage_path().'/configs/mailjob.mjb';
             $template = file_get_contents($filepath);
+            $options = Session::get('mail_options');
+            $snippets = array();
+
+            $duplicate_removals = $options['duplicate_removals'];
+            $mail_class = $options['mail_class'];
+            $data_services = $options['data_services'];
+            $data_quality = $options['data_quality'];
+
+
+            if($data_services != 'none'){
+                $snippets[] = file_get_contents(storage_path().'/configs/'.'data-service-'.$data_services);
+            }
+
+            if($duplicate_removals != 'none'){
+                $snippets[] = file_get_contents(storage_path().'/configs/'.'dedupe-'.$duplicate_removals);
+            }
+
+            /*
+            if($data_quality != 'none'){
+                $snippets[] = 'data-quality-'.$data_quality;
+            }
+            */
+
+            /*
+            if($mail_class != 'none'){
+                $snippets[] = 'mail-class-'.$mail_class;
+            }
+            */
+
+            foreach($snippets as $snippet){
+                $template .= "\n".$snippet."\n";
+            }
+
             $new_config = str_replace('{job_id}', $job_id, $template);
             file_put_contents(storage_path().'/job_files/'.$job_id.'.mjb', $new_config);
             return Response::download(storage_path().'/job_files/'.$job_id.'.mjb');

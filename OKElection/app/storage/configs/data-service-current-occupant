@@ -1,5 +1,5 @@
 [MODIFY-6]
-LIST="C:\BCC\MM2010\Lists\{job_id}.dbf"
+LIST="C:\BCC\MM2010\Lists\ncoa_certificate_{job_id}.dbf"
 SETTINGS="ADD OR CURRENT OCCUPANT"
 SELECTIVITY=NONE
 PARALLEL=N

@@ -1,5 +1,5 @@
 [DATASERVICES-6]
-LIST="C:\BCC\MM2010\Lists\ncoa_certificate_{job_id}.dbf"
+LIST="C:\BCC\MM2010\Lists\{job_id}.dbf"
 PRINTER="Win2PDF"
 PROCESSES="LSP"
 PREPAID=Y
@@ -22,6 +22,6 @@ STARTTIME=DEFAULT
 SUPPRESSERRORS=N
 PRINTTOFILE=Y
 LISTOWNER=LISTPROCESSOR
-FILENAME="C:\Users\griffin\Google Drive\Automation\{job_id}\{job_id}.pdf"
+FILENAME="C:\Users\griffin\Google Drive\Automation\{job_id}\ncoa_certificate_{job_id}.pdf"
 CLASSOFMAIL="K"
 MAILINGZIPCODE="76011"

@@ -83,9 +83,7 @@ abstract class Grammar {
 	 */
 	protected function wrapValue($value)
 	{
-		if ($value === '*') return $value;
-
-		return '"'.str_replace('"', '""', $value).'"';
+		return $value !== '*' ? sprintf($this->wrapper, $value) : $value;
 	}
 
 	/**

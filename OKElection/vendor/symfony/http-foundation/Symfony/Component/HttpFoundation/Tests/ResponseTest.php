@@ -445,15 +445,11 @@ class ResponseTest extends ResponseTestCase
         $response->setStatusCode(101);
         $response->prepare($request);
         $this->assertEquals('', $response->getContent());
-        $this->assertFalse($response->headers->has('Content-Type'));
-        $this->assertFalse($response->headers->has('Content-Type'));
 
         $response->setContent('content');
         $response->setStatusCode(304);
         $response->prepare($request);
         $this->assertEquals('', $response->getContent());
-        $this->assertFalse($response->headers->has('Content-Type'));
-        $this->assertFalse($response->headers->has('Content-Length'));
     }
 
     public function testPrepareRemovesContentLength()

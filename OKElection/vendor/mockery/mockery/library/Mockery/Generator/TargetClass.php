@@ -25,10 +25,4 @@ interface TargetClass
     /** @return string */
     public function getShortName();
 
-    /** @return bool */
-    public function implementsInterface($interface);
-
-    /** @return bool */
-    public function hasInternalAncestor();
-
 }

@@ -93,6 +93,5 @@ class IsTest extends TestFixture
    public function testIsPast()
    {
       $this->assertFalse(Carbon::now()->addSecond()->isPast());
-      $this->assertFalse(Carbon::now()->isPast());
    }
 }

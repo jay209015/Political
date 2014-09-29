@@ -42,113 +42,103 @@ class RedisClusterHashStrategy implements CommandHashStrategyInterface
      */
     protected function getDefaultCommands()
     {
-        $getKeyFromFirstArgument = array($this, 'getKeyFromFirstArgument');
-        $getKeyFromAllArguments = array($this, 'getKeyFromAllArguments');
+        $keyIsFirstArgument = array($this, 'getKeyFromFirstArgument');
 
         return array(
             /* commands operating on the key space */
-            'EXISTS'                => $getKeyFromFirstArgument,
-            'DEL'                   => $getKeyFromAllArguments,
-            'TYPE'                  => $getKeyFromFirstArgument,
-            'EXPIRE'                => $getKeyFromFirstArgument,
-            'EXPIREAT'              => $getKeyFromFirstArgument,
-            'PERSIST'               => $getKeyFromFirstArgument,
-            'PEXPIRE'               => $getKeyFromFirstArgument,
-            'PEXPIREAT'             => $getKeyFromFirstArgument,
-            'TTL'                   => $getKeyFromFirstArgument,
-            'PTTL'                  => $getKeyFromFirstArgument,
-            'SORT'                  => $getKeyFromFirstArgument, // TODO
+            'EXISTS'                => $keyIsFirstArgument,
+            'DEL'                   => array($this, 'getKeyFromAllArguments'),
+            'TYPE'                  => $keyIsFirstArgument,
+            'EXPIRE'                => $keyIsFirstArgument,
+            'EXPIREAT'              => $keyIsFirstArgument,
+            'PERSIST'               => $keyIsFirstArgument,
+            'PEXPIRE'               => $keyIsFirstArgument,
+            'PEXPIREAT'             => $keyIsFirstArgument,
+            'TTL'                   => $keyIsFirstArgument,
+            'PTTL'                  => $keyIsFirstArgument,
+            'SORT'                  => $keyIsFirstArgument, // TODO
 
             /* commands operating on string values */
-            'APPEND'                => $getKeyFromFirstArgument,
-            'DECR'                  => $getKeyFromFirstArgument,
-            'DECRBY'                => $getKeyFromFirstArgument,
-            'GET'                   => $getKeyFromFirstArgument,
-            'GETBIT'                => $getKeyFromFirstArgument,
-            'MGET'                  => $getKeyFromAllArguments,
-            'SET'                   => $getKeyFromFirstArgument,
-            'GETRANGE'              => $getKeyFromFirstArgument,
-            'GETSET'                => $getKeyFromFirstArgument,
-            'INCR'                  => $getKeyFromFirstArgument,
-            'INCRBY'                => $getKeyFromFirstArgument,
-            'INCRBYFLOAT'           => $getKeyFromFirstArgument,
-            'SETBIT'                => $getKeyFromFirstArgument,
-            'SETEX'                 => $getKeyFromFirstArgument,
+            'APPEND'                => $keyIsFirstArgument,
+            'DECR'                  => $keyIsFirstArgument,
+            'DECRBY'                => $keyIsFirstArgument,
+            'GET'                   => $keyIsFirstArgument,
+            'GETBIT'                => $keyIsFirstArgument,
+            'MGET'                  => array($this, 'getKeyFromAllArguments'),
+            'SET'                   => $keyIsFirstArgument,
+            'GETRANGE'              => $keyIsFirstArgument,
+            'GETSET'                => $keyIsFirstArgument,
+            'INCR'                  => $keyIsFirstArgument,
+            'INCRBY'                => $keyIsFirstArgument,
+            'SETBIT'                => $keyIsFirstArgument,
+            'SETEX'                 => $keyIsFirstArgument,
             'MSET'                  => array($this, 'getKeyFromInterleavedArguments'),
             'MSETNX'                => array($this, 'getKeyFromInterleavedArguments'),
-            'SETNX'                 => $getKeyFromFirstArgument,
-            'SETRANGE'              => $getKeyFromFirstArgument,
-            'STRLEN'                => $getKeyFromFirstArgument,
-            'SUBSTR'                => $getKeyFromFirstArgument,
-            'BITCOUNT'              => $getKeyFromFirstArgument,
+            'SETNX'                 => $keyIsFirstArgument,
+            'SETRANGE'              => $keyIsFirstArgument,
+            'STRLEN'                => $keyIsFirstArgument,
+            'SUBSTR'                => $keyIsFirstArgument,
+            'BITCOUNT'              => $keyIsFirstArgument,
 
             /* commands operating on lists */
-            'LINSERT'               => $getKeyFromFirstArgument,
-            'LINDEX'                => $getKeyFromFirstArgument,
-            'LLEN'                  => $getKeyFromFirstArgument,
-            'LPOP'                  => $getKeyFromFirstArgument,
-            'RPOP'                  => $getKeyFromFirstArgument,
+            'LINSERT'               => $keyIsFirstArgument,
+            'LINDEX'                => $keyIsFirstArgument,
+            'LLEN'                  => $keyIsFirstArgument,
+            'LPOP'                  => $keyIsFirstArgument,
+            'RPOP'                  => $keyIsFirstArgument,
             'BLPOP'                 => array($this, 'getKeyFromBlockingListCommands'),
             'BRPOP'                 => array($this, 'getKeyFromBlockingListCommands'),
-            'LPUSH'                 => $getKeyFromFirstArgument,
-            'LPUSHX'                => $getKeyFromFirstArgument,
-            'RPUSH'                 => $getKeyFromFirstArgument,
-            'RPUSHX'                => $getKeyFromFirstArgument,
-            'LRANGE'                => $getKeyFromFirstArgument,
-            'LREM'                  => $getKeyFromFirstArgument,
-            'LSET'                  => $getKeyFromFirstArgument,
-            'LTRIM'                 => $getKeyFromFirstArgument,
+            'LPUSH'                 => $keyIsFirstArgument,
+            'LPUSHX'                => $keyIsFirstArgument,
+            'RPUSH'                 => $keyIsFirstArgument,
+            'RPUSHX'                => $keyIsFirstArgument,
+            'LRANGE'                => $keyIsFirstArgument,
+            'LREM'                  => $keyIsFirstArgument,
+            'LSET'                  => $keyIsFirstArgument,
+            'LTRIM'                 => $keyIsFirstArgument,
 
             /* commands operating on sets */
-            'SADD'                  => $getKeyFromFirstArgument,
-            'SCARD'                 => $getKeyFromFirstArgument,
-            'SISMEMBER'             => $getKeyFromFirstArgument,
-            'SMEMBERS'              => $getKeyFromFirstArgument,
-            'SSCAN'                 => $getKeyFromFirstArgument,
-            'SPOP'                  => $getKeyFromFirstArgument,
-            'SRANDMEMBER'           => $getKeyFromFirstArgument,
-            'SREM'                  => $getKeyFromFirstArgument,
+            'SADD'                  => $keyIsFirstArgument,
+            'SCARD'                 => $keyIsFirstArgument,
+            'SISMEMBER'             => $keyIsFirstArgument,
+            'SMEMBERS'              => $keyIsFirstArgument,
+            'SSCAN'                 => $keyIsFirstArgument,
+            'SPOP'                  => $keyIsFirstArgument,
+            'SRANDMEMBER'           => $keyIsFirstArgument,
+            'SREM'                  => $keyIsFirstArgument,
 
             /* commands operating on sorted sets */
-            'ZADD'                  => $getKeyFromFirstArgument,
-            'ZCARD'                 => $getKeyFromFirstArgument,
-            'ZCOUNT'                => $getKeyFromFirstArgument,
-            'ZINCRBY'               => $getKeyFromFirstArgument,
-            'ZRANGE'                => $getKeyFromFirstArgument,
-            'ZRANGEBYSCORE'         => $getKeyFromFirstArgument,
-            'ZRANK'                 => $getKeyFromFirstArgument,
-            'ZREM'                  => $getKeyFromFirstArgument,
-            'ZREMRANGEBYRANK'       => $getKeyFromFirstArgument,
-            'ZREMRANGEBYSCORE'      => $getKeyFromFirstArgument,
-            'ZREVRANGE'             => $getKeyFromFirstArgument,
-            'ZREVRANGEBYSCORE'      => $getKeyFromFirstArgument,
-            'ZREVRANK'              => $getKeyFromFirstArgument,
-            'ZSCORE'                => $getKeyFromFirstArgument,
-            'ZSCAN'                 => $getKeyFromFirstArgument,
-            'ZLEXCOUNT'             => $getKeyFromFirstArgument,
-            'ZRANGEBYLEX'           => $getKeyFromFirstArgument,
-            'ZREMRANGEBYLEX'        => $getKeyFromFirstArgument,
+            'ZADD'                  => $keyIsFirstArgument,
+            'ZCARD'                 => $keyIsFirstArgument,
+            'ZCOUNT'                => $keyIsFirstArgument,
+            'ZINCRBY'               => $keyIsFirstArgument,
+            'ZRANGE'                => $keyIsFirstArgument,
+            'ZRANGEBYSCORE'         => $keyIsFirstArgument,
+            'ZRANK'                 => $keyIsFirstArgument,
+            'ZREM'                  => $keyIsFirstArgument,
+            'ZREMRANGEBYRANK'       => $keyIsFirstArgument,
+            'ZREMRANGEBYSCORE'      => $keyIsFirstArgument,
+            'ZREVRANGE'             => $keyIsFirstArgument,
+            'ZREVRANGEBYSCORE'      => $keyIsFirstArgument,
+            'ZREVRANK'              => $keyIsFirstArgument,
+            'ZSCORE'                => $keyIsFirstArgument,
+            'ZSCAN'                 => $keyIsFirstArgument,
 
             /* commands operating on hashes */
-            'HDEL'                  => $getKeyFromFirstArgument,
-            'HEXISTS'               => $getKeyFromFirstArgument,
-            'HGET'                  => $getKeyFromFirstArgument,
-            'HGETALL'               => $getKeyFromFirstArgument,
-            'HMGET'                 => $getKeyFromFirstArgument,
-            'HMSET'                 => $getKeyFromFirstArgument,
-            'HINCRBY'               => $getKeyFromFirstArgument,
-            'HINCRBYFLOAT'          => $getKeyFromFirstArgument,
-            'HKEYS'                 => $getKeyFromFirstArgument,
-            'HLEN'                  => $getKeyFromFirstArgument,
-            'HSET'                  => $getKeyFromFirstArgument,
-            'HSETNX'                => $getKeyFromFirstArgument,
-            'HVALS'                 => $getKeyFromFirstArgument,
-            'HSCAN'                 => $getKeyFromFirstArgument,
-
-            /* commands operating on HyperLogLog */
-            'PFADD'                 => $getKeyFromFirstArgument,
-            'PFCOUNT'               => $getKeyFromAllArguments,
-            'PFMERGE'               => $getKeyFromAllArguments,
+            'HDEL'                  => $keyIsFirstArgument,
+            'HEXISTS'               => $keyIsFirstArgument,
+            'HGET'                  => $keyIsFirstArgument,
+            'HGETALL'               => $keyIsFirstArgument,
+            'HMGET'                 => $keyIsFirstArgument,
+            'HMSET'                 => $keyIsFirstArgument,
+            'HINCRBY'               => $keyIsFirstArgument,
+            'HINCRBYFLOAT'          => $keyIsFirstArgument,
+            'HKEYS'                 => $keyIsFirstArgument,
+            'HLEN'                  => $keyIsFirstArgument,
+            'HSET'                  => $keyIsFirstArgument,
+            'HSETNX'                => $keyIsFirstArgument,
+            'HVALS'                 => $keyIsFirstArgument,
+            'HSCAN'                 => $keyIsFirstArgument,
 
             /* scripting */
             'EVAL'                  => array($this, 'getKeyFromScriptingCommands'),
@@ -297,27 +287,6 @@ class RedisClusterHashStrategy implements CommandHashStrategyInterface
      */
     public function getKeyHash($key)
     {
-        $key = $this->extractKeyTag($key);
-        $hash = $this->hashGenerator->hash($key);
-
-        return $hash;
-    }
-
-    /**
-     * Returns only the hashable part of a key (delimited by "{...}"), or the
-     * whole key if a key tag is not found in the string.
-     *
-     * @param  string $key A key.
-     * @return string
-     */
-    protected function extractKeyTag($key)
-    {
-        if (false !== $start = strpos($key, '{')) {
-            if (false !== ($end = strpos($key, '}', $start)) && $end !== ++$start) {
-                $key = substr($key, $start, $end - $start);
-            }
-        }
-
-        return $key;
+        return $this->hashGenerator->hash($key);
     }
 }

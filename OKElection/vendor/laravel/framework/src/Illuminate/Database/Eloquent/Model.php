@@ -150,13 +150,6 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	protected $with = array();
 
 	/**
-	 * The class name to be used in polymorphic relations.
-	 *
-	 * @var string
-	 */
-	protected $morphClass;
-
-	/**
 	 * Indicates if the model exists.
 	 *
 	 * @var bool
@@ -692,7 +685,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	{
 		// If no relation name was given, we will use this debug backtrace to extract
 		// the calling method's name and use that as the relationship name as most
-		// of the time this will be what we desire to use for the relationships.
+		// of the time this will be what we desire to use for the relatinoships.
 		if (is_null($relation))
 		{
 			list(, $caller) = debug_backtrace(false);
@@ -752,7 +745,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 			);
 		}
 
-		// If we are not eager loading the relationship we will essentially treat this
+		// If we are not eager loading the relatinship, we will essentially treat this
 		// as a belongs-to style relationship since morph-to extends that class and
 		// we will pass in the appropriate values so that it behaves as expected.
 		else
@@ -1344,7 +1337,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 
 		// To sync all of the relationships to the database, we will simply spin through
 		// the relationships and save each model via this "push" method, which allows
-		// us to recurs into all of these nested relations for this model instance.
+		// us to recurse into all of these nested relations for the model instance.
 		foreach ($this->relations as $models)
 		{
 			foreach (Collection::make($models) as $model)
@@ -1443,12 +1436,9 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 			// models are updated, giving them a chance to do any special processing.
 			$dirty = $this->getDirty();
 
-			if (count($dirty) > 0)
-			{
-				$this->setKeysForSaveQuery($query)->update($dirty);
+			$this->setKeysForSaveQuery($query)->update($dirty);
 
-				$this->fireModelEvent('updated', false);
-			}
+			$this->fireModelEvent('updated', false);
 		}
 
 		return true;
@@ -1922,16 +1912,6 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	}
 
 	/**
-	 * Get the class name for polymorphic relations.
-	 *
-	 * @return string
-	 */
-	public function getMorphClass()
-	{
-		return $this->morphClass ?: get_class($this);
-	}
-
-	/**
 	 * Get the number of models to return per page.
 	 *
 	 * @return int
@@ -1942,7 +1922,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	}
 
 	/**
-	 * Set the number of models to return per page.
+	 * Set the number of models ot return per page.
 	 *
 	 * @param  int   $perPage
 	 * @return void
@@ -2200,16 +2180,6 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	{
 		$attributes = $this->getArrayableAttributes();
 
-		// If an attribute is a date, we will cast it to a string after converting it
-		// to a DateTime / Carbon instance. This is so we will get some consistent
-		// formatting while accessing attributes vs. arraying / JSONing a model.
-		foreach ($this->getDates() as $key)
-		{
-			if ( ! isset($attributes[$key])) continue;
-
-			$attributes[$key] = (string) $this->asDateTime($attributes[$key]);
-		}
-
 		// We want to spin through all the mutated attributes for this model and call
 		// the mutator for the attribute. We cache off every mutated attributes so
 		// we don't have to constantly check on attributes that actually change.
@@ -2217,7 +2187,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 		{
 			if ( ! array_key_exists($key, $attributes)) continue;
 
-			$attributes[$key] = $this->mutateAttributeForArray(
+			$attributes[$key] = $this->mutateAttribute(
 				$key, $attributes[$key]
 			);
 		}
@@ -2227,7 +2197,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 		// when we need to array or JSON the model for convenience to the coder.
 		foreach ($this->appends as $key)
 		{
-			$attributes[$key] = $this->mutateAttributeForArray($key, null);
+			$attributes[$key] = $this->mutateAttribute($key, null);
 		}
 
 		return $attributes;
@@ -2441,20 +2411,6 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	protected function mutateAttribute($key, $value)
 	{
 		return $this->{'get'.studly_case($key).'Attribute'}($value);
-	}
-
-	/**
-	 * Get the value of an attribute using its mutator for array conversion.
-	 *
-	 * @param  string  $key
-	 * @param  mixed   $value
-	 * @return mixed
-	 */
-	protected function mutateAttributeForArray($key, $value)
-	{
-		$value = $this->mutateAttribute($key, $value);
-
-		return $value instanceof ArrayableInterface ? $value->toArray() : $value;
 	}
 
 	/**
@@ -2689,33 +2645,13 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 
 		foreach ($this->attributes as $key => $value)
 		{
-			if ( ! array_key_exists($key, $this->original))
-			{
-				$dirty[$key] = $value;
-			}
-			elseif ($value !== $this->original[$key] &&
-                                 ! $this->originalIsNumericallyEquivalent($key))
+			if ( ! array_key_exists($key, $this->original) || $value !== $this->original[$key])
 			{
 				$dirty[$key] = $value;
 			}
 		}
 
 		return $dirty;
-	}
-
-	/**
-	 * Determine if the new and old values for a given key are numerically equivalent.
-	 *
-	 * @param  string  $key
-	 * @return bool
-	 */
-	protected function originalIsNumericallyEquivalent($key)
-	{
-		$current = $this->attributes[$key];
-
-		$original = $this->original[$key];
-
-		return is_numeric($current) && is_numeric($original) && strcmp((string) $current, (string) $original) === 0;
 	}
 
 	/**
@@ -2829,16 +2765,6 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	public static function setConnectionResolver(Resolver $resolver)
 	{
 		static::$resolver = $resolver;
-	}
-
-	/**
-	 * Unset the connection resolver for models.
-	 *
-	 * @return void
-	 */
-	public static function unsetConnectionResolver()
-	{
-		static::$resolver = null;
 	}
 
 	/**
@@ -2961,7 +2887,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 * Determine if an attribute exists on the model.
 	 *
 	 * @param  string  $key
-	 * @return bool
+	 * @return void
 	 */
 	public function __isset($key)
 	{

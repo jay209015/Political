@@ -83,7 +83,7 @@ class Router implements HttpKernelInterface, RouteFiltererInterface {
 	protected $regexFilters = array();
 
 	/**
-	 * The registered route value binders.
+	 * The reigstered route value binders.
 	 *
 	 * @var array
 	 */
@@ -1508,25 +1508,6 @@ class Router implements HttpKernelInterface, RouteFiltererInterface {
 	}
 
 	/**
-	 * Alias for the "currentRouteNamed" method.
-	 *
-	 * @param  dynamic  string
-	 * @return bool
-	 */
-	public function is()
-	{
-		foreach (func_get_args() as $pattern)
-		{
-			if (str_is($pattern, $this->currentRouteName()))
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * Determine if the current route matches a given name.
 	 *
 	 * @param  string  $name
@@ -1547,25 +1528,6 @@ class Router implements HttpKernelInterface, RouteFiltererInterface {
 		$action = $this->current()->getAction();
 
 		return isset($action['controller']) ? $action['controller'] : null;
-	}
-
-	/**
-	 * Alias for the "currentRouteUses" method.
-	 *
-	 * @param  dynamic  string
-	 * @return bool
-	 */
-	public function isAction()
-	{
-		foreach (func_get_args() as $pattern)
-		{
-			if (str_is($pattern, $this->currentRouteAction()))
-			{
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	/**

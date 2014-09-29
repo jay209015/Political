@@ -319,4 +319,14 @@ class ReportController extends BaseController {
             Redirect::to('reports/list-preview');
         }
     }
+
+    public function getTrack(){
+        $Tracker = new Track();
+        $Tracker->login();
+        $summary = $Tracker->getSummary();
+
+        return View::make('report/track')
+            ->with('active','track')
+            ->with('summary',$summary);
+    }
 }

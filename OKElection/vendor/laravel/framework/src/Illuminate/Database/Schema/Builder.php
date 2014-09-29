@@ -73,7 +73,7 @@ class Builder {
 	 * @param  string  $table
 	 * @return array
 	 */
-	public function getColumnListing($table)
+	protected function getColumnListing($table)
 	{
 		$table = $this->connection->getTablePrefix().$table;
 

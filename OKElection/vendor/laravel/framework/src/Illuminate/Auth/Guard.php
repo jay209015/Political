@@ -72,13 +72,6 @@ class Guard {
 	protected $loggedOut = false;
 
 	/**
-	 * Indicates if a token user retrieval has been attempted.
-	 *
-	 * @var bool
-	 */
-	protected $tokenRetrievalAttempted = false;
-
-	/**
 	 * Create a new authentication guard.
 	 *
 	 * @param  \Illuminate\Auth\UserProviderInterface  $provider
@@ -176,10 +169,8 @@ class Guard {
 	 */
 	protected function getUserByRecaller($recaller)
 	{
-		if ($this->validRecaller($recaller) && ! $this->tokenRetrievalAttempted)
+		if ($this->validRecaller($recaller))
 		{
-			$this->tokenRetrievalAttempted = true;
-
 			list($id, $token) = explode('|', $recaller, 2);
 
 			$this->viaRemember = ! is_null($user = $this->provider->retrieveByToken($id, $token));
@@ -212,7 +203,7 @@ class Guard {
 	}
 
 	/**
-	 * Determine if the recaller cookie is in a valid format.
+	 * Deteremine if the recaller cookie is in a valid format.
 	 *
 	 * @param  string  $recaller
 	 * @return bool
@@ -411,7 +402,7 @@ class Guard {
 	 */
 	public function login(UserInterface $user, $remember = false)
 	{
-		$this->updateSession($user->getAuthIdentifier());
+		$this->updateSession($id = $user->getAuthIdentifier());
 
 		// If the user should be permanently "remembered" by the application we will
 		// queue a permanent cookie that contains the encrypted copy of the user
@@ -560,7 +551,7 @@ class Guard {
 	}
 
 	/**
-	 * Create a new remember token for the user if one doesn't already exist.
+	 * Create a new remember token for the user if one doens't already exist.
 	 *
 	 * @param  \Illuminate\Auth\UserInterface  $user
 	 * @return void

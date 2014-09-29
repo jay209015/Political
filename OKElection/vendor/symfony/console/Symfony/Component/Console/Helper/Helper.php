@@ -49,7 +49,7 @@ abstract class Helper implements HelperInterface
      */
     protected function strlen($string)
     {
-        if (!function_exists('mb_strwidth')) {
+        if (!function_exists('mb_strlen')) {
             return strlen($string);
         }
 
@@ -57,6 +57,6 @@ abstract class Helper implements HelperInterface
             return strlen($string);
         }
 
-        return mb_strwidth($string, $encoding);
+        return mb_strlen($string, $encoding);
     }
 }

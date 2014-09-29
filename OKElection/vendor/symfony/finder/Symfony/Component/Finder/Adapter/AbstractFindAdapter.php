@@ -256,7 +256,6 @@ abstract class AbstractFindAdapter extends AbstractAdapter
                 case '!=':
                     $command->add('-size -'.$size->getTarget().'c');
                     $command->add('-size +'.$size->getTarget().'c');
-                    break;
                 case '<':
                 default:
                     $command->add('-size -'.$size->getTarget().'c');

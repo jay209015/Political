@@ -43,7 +43,7 @@ class Mockery_MockTest extends PHPUnit_Framework_TestCase
         \Mockery::getConfiguration()->allowMockingNonExistentMethods(true);
     }
 
-    public function testMockWithNotAllowingMockingOfNonExistentMethodsCanBeGivenAdditionalMethodsToMockEvenIfTheyDontExistOnClass()
+    public function testMockWithNotAllowingMockingOfNonExistantMethodsCanBeGivenAdditionalMethodsToMockEvenIfTheyDontExistOnClass()
     {
         \Mockery::getConfiguration()->allowMockingNonExistentMethods(false);
         $m = $this->container->mock('ExampleClassForTestingNonExistentMethod');
@@ -53,31 +53,19 @@ class Mockery_MockTest extends PHPUnit_Framework_TestCase
         \Mockery::getConfiguration()->allowMockingNonExistentMethods(true);
     }
 
-    public function testShouldAllowMockingMethodReturnsMockInstance()
-    {
-        $m = Mockery::mock('someClass');
-        $this->assertInstanceOf('Mockery\MockInterface', $m->shouldAllowMockingMethod('testFunction'));
-    }
-
-    public function testShouldAllowMockingProtectedMethodReturnsMockInstance()
-    {
-        $m = Mockery::mock('someClass');
-        $this->assertInstanceOf('Mockery\MockInterface', $m->shouldAllowMockingProtectedMethods('testFunction'));
-    }
-
-    public function testMockAddsToString()
+    public function testMockAddsToString() 
     {
         $mock = $this->container->mock('ClassWithNoToString');
         assertThat(hasToString($mock));
     }
 
-    public function testMockToStringMayBeDeferred()
+    public function testMockToStringMayBeDeferred() 
     {
         $mock = $this->container->mock('ClassWithToString')->shouldDeferMissing();
         assertThat((string)$mock, equalTo("foo"));
     }
 
-    public function testMockToStringShouldIgnoreMissingAlwaysReturnsString()
+    public function testMockToStringShouldIgnoreMissingAlwaysReturnsString() 
     {
         $mock = $this->container->mock('ClassWithNoToString')->shouldIgnoreMissing();
         assertThat(isNonEmptyString((string)$mock));
@@ -92,14 +80,14 @@ class ExampleClassForTestingNonExistentMethod
 {
 }
 
-class ClassWithToString
+class ClassWithToString 
 {
-    public function __toString()
+    public function __toString() 
     {
         return 'foo';
     }
 }
 
-class ClassWithNoToString
+class ClassWithNoToString 
 {
 }

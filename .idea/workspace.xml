@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="774d4998-1c45-4b2f-a1b3-4f4c6ad60d6e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/Dashboard.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/spreadsheet/listcsv.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/.gitattributes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/commands/.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/app.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/auth.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/cache.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/compile.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/database.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/local/app.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/mail.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/packages/.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/queue.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/remote.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/session.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/testing/cache.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/testing/session.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/view.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/config/workbench.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/controllers/.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/controllers/BaseController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/controllers/CalendarController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/controllers/HomeController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/controllers/IndexController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/controllers/ReportController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/controllers/UserController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/migrations/.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/migrations/2014_05_09_202323_create_users.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/migrations/2014_05_15_180043_add_county_to_voters_table.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/migrations/2014_05_15_232353_create_election_dates_table.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/migrations/2014_05_21_183904_create_date_columns_for_candidates.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/migrations/2014_05_29_021156_cleanup_mailing_addresses.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/migrations/2014_05_30_152335_fix_counties_column.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/production.sqlite" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/seeds/.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/seeds/DatabaseSeeder.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/database/seeds/UserTableSeeder.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/filters.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/lang/en/pagination.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/lang/en/reminders.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/lang/en/validation.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/Calendar.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/Candidate.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/County.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/Csv.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/Election.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/History.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/Job.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/Precinct.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/QueryField.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/Report.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/Track.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/User.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/Voter.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/_ide_helper.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/jQuery.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/models/jQueryNode.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/routes.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/start/artisan.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/start/global.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/start/local.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/cache/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/configs/data-service-current-occupant" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/configs/data-service-ncoa" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/configs/dedupe-address-full" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/configs/dedupe-address-last" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/configs/dedupe-address-only" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/configs/mailjob.mjb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/job_files/3.mjb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/logs/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/meta/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/sessions/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/uploads/FieldMap_07-20-14_104139.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/uploads/FieldMap_07-21-14_014532.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/storage/views/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/tests/ExampleTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/tests/ReportTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/tests/TestCase.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/about.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/calendar/index.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/contact.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/emails/auth/reminder.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/index.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/login.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/loginfacade.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/master.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/profile.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/register.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/report/listpreview.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/report/listupload.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/report/lookupvoter.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/report/lookupvoterinfo.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/report/postuniquevotersincounties.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/report/query.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/report/track.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/app/views/report/uniquevotersincounties.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/artisan" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/bootstrap/autoload.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/bootstrap/paths.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/bootstrap/start.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/composer.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/phpunit.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/.htaccess" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/avgrund.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/bootstrap-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/bootstrap-theme.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/fullcalendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/fullcalendar.print.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/multiselect.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/queryBuilder.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/css/sticky-footer-navbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/QueryBuilderController.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/QueryGroupModel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/QueryRowModel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/StateCountyController.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/angular.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/encoding.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/fullcalendar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/fullcalendar.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/gcal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/html5shiv.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/jquery.avgrund.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/jquery.livequery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/login.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/moment.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/multiselect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/register.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/respond.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/js/simple.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/packages/.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/public/robots.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/readme.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OKElection/server.php" afterPath="" />
+    </list>
+    <ignored path="Dashboard.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="Dashboard" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="master.blade.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/master.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="167" column="5" selection-start="6295" selection-end="6295" vertical-scroll-proportion="72.333336" vertical-offset="4241" max-vertical-offset="4875">
+              <folding>
+                <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listupload.blade.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/spreadsheet/listupload.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="13" selection-start="1276" selection-end="1276" vertical-scroll-proportion="-20.625" vertical-offset="135" max-vertical-offset="885">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="form-dropzone.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/assets/admin/pages/scripts/form-dropzone.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="615">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listcsv.blade.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/spreadsheet/listcsv.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="16" selection-start="563" selection-end="563" vertical-scroll-proportion="0.51004636" vertical-offset="0" max-vertical-offset="810">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="53" column="40" selection-start="1440" selection-end="1447" vertical-scroll-proportion="-33.125" vertical-offset="0" max-vertical-offset="1575">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Spreadsheet.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/Spreadsheet.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="160" column="35" selection-start="4401" selection-end="4401" vertical-scroll-proportion="-33.208332" vertical-offset="1603" max-vertical-offset="2775">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpreadsheetController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/SpreadsheetController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="0" selection-start="1758" selection-end="1758" vertical-scroll-proportion="-1.92" vertical-offset="774" max-vertical-offset="2655">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/app/views/login.html" />
+        <option value="$PROJECT_DIR$/app/views/login.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/loginfacade.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/layout_blank_page.html" />
+        <option value="$USER_HOME$/Downloads/metronic_v3.1.3/metronic/templates/admin/form_dropzone.html" />
+        <option value="$PROJECT_DIR$/app/models/Report.php" />
+        <option value="$PROJECT_DIR$/app/views/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/controllers/ReportController.php" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
+        <option value="$PROJECT_DIR$/app/views/report/listupload.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/report/listcsv.blade.php" />
+        <option value="$PROJECT_DIR$/app/models/Spreadsheet.php" />
+        <option value="$PROJECT_DIR$/app/views/master.blade.php" />
+        <option value="$PROJECT_DIR$/app/controllers/SpreadsheetController.php" />
+        <option value="$PROJECT_DIR$/app/views/spreadsheet/listupload.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/spreadsheet/listcsv.blade.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
+    <option name="width" value="1400" />
+    <option name="height" value="812" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spreadsheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="storage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="SearchEverywhereHistory" value="" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="2678b30b-a56a-45b5-a397-2949396c051e" server_name="Political">
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="774d4998-1c45-4b2f-a1b3-4f4c6ad60d6e" name="Default" comment="" />
+      <created>1411245557385</created>
+      <updated>1411245557385</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="22" width="1400" height="812" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963988" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2496318" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26067746" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/views/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="340" column="16" selection-start="13621" selection-end="13621" vertical-scroll-proportion="0.0" vertical-offset="4593" max-vertical-offset="5250">
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/spreadsheet/listupload.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="43" selection-start="1407" selection-end="1407" vertical-scroll-proportion="0.0" vertical-offset="155" max-vertical-offset="825">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/spreadsheet/listcsv.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="47" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/metronic_v3.1.3/metronic/templates/admin/table_responsive.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1722" column="52" selection-start="41199" selection-end="48522" vertical-scroll-proportion="0.0" vertical-offset="25499" max-vertical-offset="45735">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/SpreadsheetController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="234" column="40" selection-start="7266" selection-end="7266" vertical-scroll-proportion="0.0" vertical-offset="2990" max-vertical-offset="5250">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Spreadsheet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="448" column="36" selection-start="13740" selection-end="13749" vertical-scroll-proportion="0.0" vertical-offset="6605" max-vertical-offset="7755">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="20" selection-start="5338" selection-end="5341" vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="16815">
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layout_blank_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="3" selection-end="3" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="135" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/loginfacade.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="84" selection-start="4460" selection-end="4460" vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="4410">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/IndexController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="40" selection-start="1440" selection-end="1447" vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="1575" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1965">
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/loginfacade.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="37" selection-start="5687" selection-end="5687" vertical-scroll-proportion="-20.625" vertical-offset="1005" max-vertical-offset="4410">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layout_blank_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="3" selection-end="3" vertical-scroll-proportion="0.06716418" vertical-offset="0" max-vertical-offset="670" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="476" column="13" selection-start="8918" selection-end="8918" vertical-scroll-proportion="0.34477612" vertical-offset="6909" max-vertical-offset="16620">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/metronic_v3.1.3/metronic/templates/admin/table_responsive.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1722" column="52" selection-start="41199" selection-end="48522" vertical-scroll-proportion="0.0" vertical-offset="25499" max-vertical-offset="45735">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="59" selection-start="560" selection-end="560" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="270">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="40" selection-start="1440" selection-end="1447" vertical-scroll-proportion="-33.125" vertical-offset="0" max-vertical-offset="1575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/IndexController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="40" selection-start="138" selection-end="138" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="645">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="1" selection-start="39" selection-end="39" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="210">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/metronic_v3.1.3/metronic/templates/admin/index_2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="666" column="21" selection-start="20283" selection-end="22754" vertical-scroll-proportion="-6.62" vertical-offset="9659" max-vertical-offset="62655">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Spreadsheet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="35" selection-start="4401" selection-end="4401" vertical-scroll-proportion="-33.208332" vertical-offset="1603" max-vertical-offset="2775">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/admin/pages/scripts/form-dropzone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="671">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/metronic_v3.1.3/metronic/templates/admin/form_dropzone.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2057" column="34" selection-start="65975" selection-end="66140" vertical-scroll-proportion="-18.291666" vertical-offset="30416" max-vertical-offset="31050">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="167" column="5" selection-start="6295" selection-end="6295" vertical-scroll-proportion="72.333336" vertical-offset="4241" max-vertical-offset="4875">
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/SpreadsheetController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="0" selection-start="1758" selection-end="1758" vertical-scroll-proportion="-1.92" vertical-offset="774" max-vertical-offset="2655">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/spreadsheet/listupload.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="13" selection-start="1276" selection-end="1276" vertical-scroll-proportion="-20.625" vertical-offset="135" max-vertical-offset="885">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/spreadsheet/listcsv.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="16" selection-start="563" selection-end="563" vertical-scroll-proportion="0.51004636" vertical-offset="0" max-vertical-offset="810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

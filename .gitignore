@@ -1,0 +1,9 @@
+/OKElection/.idea/
+
+/.DS_Store
+
+/sql/okelection.sql
+/OKElection/public/downloads/*
+/OKElection/app/storage/uploads/*
+/OKElection/app/storage/job_files/*
+.DS_Store

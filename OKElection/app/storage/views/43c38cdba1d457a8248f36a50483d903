@@ -1,0 +1,9 @@
+
+<?php $__env->startSection('header'); ?>
+ <h1>Political Report</h1>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+ <p class="lead">Political Report is a tool to generate interesting reports from election datasets. At the present time, only the states of Oklahoma and Texas are supported. Our goal is to eventually include the entire United States - and beyond. More features coming soon.</p>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
